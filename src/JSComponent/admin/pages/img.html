@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #img{
+            width: 50px;
+        }
+        .d1{
+            font-size: 100px;
+            color: aqua;
+            width: 200px;
+            background-color: red;
+            position: absolute;
+            margin: 0 auto;
+            left: 0;    
+            right: 0;
+            filter: blur(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="d1">
+        123
+        
+    </div>
+    <div class="d2">
+        123
+    </div>
+    <script>
+       let func = function(object,...keys){
+            console.log(object)
+            for(key in keys){
+                console.log(keys[key])
+            }
+            keys.forEach(key => {
+                console.log(key)
+            })
+       }
+       func("aaa","123132",1231,0,79798)
+    </script>
+</body>
+</html>

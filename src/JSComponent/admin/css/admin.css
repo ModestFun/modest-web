@@ -1,0 +1,81 @@
+.logo {
+  width: 120px;
+  height: 31px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px 28px 16px 0;
+  float: left;
+}
+
+.site-layout-background {
+  background: #fff;
+}
+.logo {
+    background: rgba(255, 255, 255, 0.3);
+}
+html{
+  height: 100%;
+}
+body{
+  height: 100%;
+}
+.layoutMain{
+  height: 100%;
+}
+.logoTitle{
+  width: 100%;
+  display: flex;
+  margin-top: 10px;
+  justify-content: center;
+  cursor: pointer;
+}
+.logoTitle h3{
+  margin: 0px;
+  line-height: 31px;
+  margin-left: 10px;
+  font-weight: 800;
+  color: #fff;
+}
+.login{
+  width: 400px;
+  height: auto;
+  padding: 30px;
+  background-color: white;
+  margin: 0px auto;
+  margin-top: 200px;
+}
+.btnLogin{
+  width: 100%;
+}
+.btnLogin:hover{
+  background-color: #ff6700;
+  border-color: #ff6700;
+}
+.LoginMain{
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+.pass{
+  border: none;
+  width: 100%;
+  padding: 4px 11px;
+  height: 32px;
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  outline: none;
+  transition: all 0.3s;
+}
+.pass:hover{
+  border-color: #40a9ff;
+  border-right-width: 1px !important;
+}
+.pass:focus{
+  border-color: #40a9ff;
+  outline: 0;
+}
+.yuliu{
+  width: 100%;
+  height: 60px;
+}

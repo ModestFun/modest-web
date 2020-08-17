@@ -1,0 +1,232 @@
+.timeLine{
+    width: 100%;
+    margin: 0px auto;
+    position: relative;
+    margin-top: 90px;
+    padding: 10px 30px;
+    background: url("https://www.modestfun.com:8080/getPicStoreItem?name=1586946941331");
+    background-repeat: repeat;
+}
+.titmeLineTitle{
+    font-weight: 500;
+    z-index: 20;
+    position: relative;
+    margin-left: calc(18.7% - 16px);
+    margin-bottom: 0px;
+}
+.timeLineYear{
+    width: 100%;
+    margin: 10px 0;
+}
+.itemYear{
+    text-align: right;
+    width: 15%;
+    font-size: 27px;
+    margin: 5px 0;
+    font-weight: 500;
+    color: #ff6700;
+}
+.itemCard{
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+    display: block;
+    position: relative;
+}
+.fadeInLeft{
+    width: 13%;
+    position: absolute;
+    left: -0.5%;
+    top: 3px;
+    text-align: right;
+    animation: fadeInLeft 1s both;
+}
+.InLeft{
+    animation: fadeInLeft 1s both;
+}
+@keyframes fadeInLeft{
+    0%{
+        opacity: 0;
+        transform: translate3d(-100%,0,0);
+    }
+    100%{
+        opacity: 1;
+        transform: translate3d(0,0,0);
+    }
+}
+.dotCircle{
+    display: block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    z-index: 100;
+    left: 12%;
+    margin: 0px;
+    background-color: white;
+    margin-left: 10px;
+}
+.picon{
+    transform: translate3d(6px ,-5px ,0);
+}
+.fadeInRight{
+    max-width: 70%;
+    float: left;
+    padding: 20px;
+    margin-left: 16.5%;
+    background-color: #484348;
+    color: #fff;
+    animation: fadeInRight 1s both;
+}
+.fadeInRight::before{
+    position: absolute;
+    left: -20px;
+    top: 6px;
+    height: 0;
+    z-index: 0;
+    width: 0;
+    content: "";
+    border: 10px solid rgba(255, 255, 255, 0);
+    border-top: 6px solid rgba(255, 255, 255, 0);
+    border-bottom: 6px solid rgba(255, 255, 255, 0);
+    border-right-color: #484348;
+}
+.InRight{
+    animation: fadeInRight 1s both;
+}
+@keyframes fadeInRight{
+    0%{
+        opacity: 0;
+        transform: translate3d(100%,0,0);
+    }
+    100%{
+        opacity: 1;
+        transform: translate3d(0,0,0);
+    }
+}
+.clear{
+    clear: both;
+}
+.theEnd{
+    padding-top: 4px;
+    padding-bottom: 2px;
+    z-index: 20;
+    margin-top: 40px;
+    margin-left: calc(17% - 13px);
+}
+.theEnd h1{
+    position: absolute;
+    z-index: 100;
+    bottom: 0px;
+    background-color: white;
+    height: 60px;
+    margin: 0px;
+    line-height: 60px;
+}
+.timeLineLine{
+    left: 19.4%;
+    top: 175px;
+    position: absolute;
+    height: 100%;
+    width: 2px;
+    background-color: #484348;
+    z-index: 1;
+    overflow: hidden;
+}
+@media  (max-width: 768px){
+    .itemCard{
+        list-style: none;
+        padding: 10px 10px 10px 15%;
+        margin: 0;
+        display: block;
+        position: relative;
+    }
+    .timeLineLine{
+        left: 20%;
+        top: 175px;
+        position: absolute;
+        height: 100%;
+        width: 2px;
+        background-color: #484348;
+        z-index: 1;
+        overflow: hidden;
+    }
+    .itemYear{
+        text-align: left;
+        width: 100px;
+        margin-left: 20%;
+        font-size: 22px;
+        font-weight: 500;
+        color: #ff6700;
+    }
+    .fadeInLeft{
+        width: 100px;
+        position: relative;
+        top: 3px;
+        text-align: left;
+        animation: fadeInLeft 1s both;
+    }
+    .dotCircle{
+        display: none;
+    }
+    .fadeInRight{
+        width: 100%;
+        position: relative;
+        margin: 0px auto;
+        padding: 20px;
+        background-color: #484348;
+        color: #fff;
+        animation: fadeInRight 1s both;
+    }
+}
+
+@media  (min-width: 768px) and (max-width: 992px){
+    .itemYear{
+        text-align: right;
+        width: 15%;
+        font-size: 24px;
+        margin: 5px 0;
+        font-weight: 500;
+        color: #ff6700;
+    }
+    .fadeInLeft{
+        width: 13%;
+        position: absolute;
+        left: -4%;
+        top: 3px;
+        text-align: right;
+        animation: fadeInLeft 1s both;
+    }
+    .dotCircle{
+        display: block;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        z-index: 100;
+        left: 7.6%;
+        margin: 0px;
+        background-color: white;
+        margin-left: 10px;
+    }
+}
+
+@media  (min-width: 992px) and (max-width: 1200px){
+    .fadeInLeft{
+        width: 13%;
+        position: absolute;
+        left: -1.5%;
+        top: 3px;
+        text-align: right;
+        animation: fadeInLeft 1s both;
+    }
+    .dotCircle{
+        display: block;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        z-index: 100;
+        left: 10.5%;
+        margin: 0px;
+        background-color: white;
+        margin-left: 10px;
+    }
+}

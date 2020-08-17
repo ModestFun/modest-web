@@ -1,0 +1,44 @@
+.ruleCard{
+    width: 100%;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.8);
+    margin-top: 90px;
+    padding: 20px 30px 30px 30px;
+    animation: zoomIn 1s both;
+}
+.ruleTitle{
+    color: rgb(128, 129, 127);
+    padding-left: 15px;
+    border-left: 5px solid #ff6700;
+}
+.ruleIntro{
+    padding-left: 25px;
+}
+.rule{
+    padding: 5px 20px;
+    border-left: 5px solid rgb(204, 204, 204);
+    background-color: rgba(232, 232, 232,0.8);
+}
+.container{
+    margin:  0 auto;
+}
+@media (min-width: 768px) and (max-width: 992px){
+    .container{/*  */
+        width: 768px;
+        margin:  0 auto;
+    }
+}
+
+@media  (min-width: 992px) and (max-width: 1200px){
+    .container{
+        width: 992px;
+        margin:  0 auto;
+    }
+}
+
+@media  (min-width: 1200px) {
+    .container{
+        width: 1200px;
+        margin:  0 auto;
+    }
+}

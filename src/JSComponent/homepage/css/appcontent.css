@@ -1,0 +1,202 @@
+.appcontent {
+    width: 100%;
+    background-color: rgba(1, 1, 1, 0);
+}
+
+.sectionitem {
+    margin-top: 15px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 15px 30px;
+    position: relative;
+    animation: zoomIn 1s both;
+}
+.zoomIn{
+    animation: zoomIn 1s both;
+}
+@keyframes zoomIn{
+    0%{
+        opacity: 0;
+        transform: scale3d(0.3,0.3,0.3);
+    }
+    50%{
+        opacity: 1;
+    }
+}
+
+.sectionitem .top {
+    width: 100%;
+    position: relative;
+}
+
+.sectionitem .top .topTitle {
+    width: 82%;
+    line-height: 35px;
+    /* background-color: rgba(255, 255, 255, 0.8); */
+    border-bottom: 1px solid rgb(208, 208, 208);
+    
+}
+
+.sectionitem .top .topTitle a span {
+    display: inline-block;
+    height: 34px;
+    font-size: 18px;
+    color: rgb(46, 167, 224);
+    display: inline-block;
+}
+
+.sectionitem .top .topTitle a {
+    font-size: 18px;
+    color: #333;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.sectionitem .top .topTitle a:hover {
+    text-decoration: underline;
+    color: #ff6700;
+}
+.sectionitem .top .date{
+    width: 18%;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+.sectionitem .top .date .rr{
+    display: block;
+    height: 32px;
+    min-width: 65px;
+    width: 100%;
+    text-align: center;
+    line-height: 32px;
+    font-size: 30px;
+    font-weight: 600;
+    color: #ff6700;
+}
+.sectionitem .top .date .div .yy{
+    display: inline-block;
+    font-size: 17px;
+    color: rgb(152,153,151);
+}
+.sectionitem .top .date .div{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 21px;
+}
+
+.sectionitem .content{
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+    margin-top: 15px;
+}
+.sectionitem .content .titleImg{
+    width: 100%;
+}
+.sectionitem .content .text{
+    width: 100%;
+    font-size: 16px;
+}
+.sectionitem .content .titleImg img{
+    width: 100%;
+    height: 160px;
+}
+.sectionitem .bottom{
+    width: 100%;
+    position: relative;
+    margin-top: 30px;
+}
+.sectionitem .bottom .left{
+    width: 100%;
+    position: absolute;
+    top: -16px;
+}
+.sectionitem .bottom .left a{
+    font-size: 18px;
+    color: #333;
+    text-decoration: none;
+    display: block;
+    font-weight: 600;
+    font-size: 17px;
+}
+.sectionitem .bottom .left a:hover {
+    text-decoration: underline;
+    color: #ff6700;
+}
+.sectionitem .bottom .left .contentTag{
+    display: inline-block;
+    background-color: rgba(255,103,0,0.5);
+    font-size: 13px;
+    border-radius: 5px;
+    color: white;
+    padding: 2px 7px;
+    margin-left: 3px;
+}
+.tagicon{
+    transform: translateY(6px);
+}
+.svgicon{
+    transform: translateX(-3px) translateY(5px);
+}
+.sectionitem .bottom .right{
+    width: 100%;
+    height: 45px;
+    position: relative;
+    border-top: 1px solid rgb(208, 208, 208);
+}
+.sectionitem .bottom .right span{
+    display: block;
+    float: right;
+    margin-top: 15px;
+    margin-right: 20px;
+    color: rgb(152,153,151);
+}
+
+.Row{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.RowBetween{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.RowAround{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.RowOther{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.appfooter{
+    width: 100%;
+    height: 50px;
+    margin-top: 15px;
+    line-height: 50px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8)
+}
+@media (max-width: 580px){
+    .sectionitem .top .topTitle {
+        width: 100%;
+        line-height: 35px;
+        display: block;
+        border-bottom: 1px solid rgb(232, 233, 231);
+    }
+    .sectionitem .top .date{
+        display: none;
+    }
+    .Row{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}

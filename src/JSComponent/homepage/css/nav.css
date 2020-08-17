@@ -1,0 +1,258 @@
+.container{
+    margin:  0 auto;
+}
+
+.navm {
+    background-color: rgba(255, 255, 255,0.8);
+    width: 100%;
+    position: fixed;
+    z-index: 10000;
+    top: 0px;
+    height: 70px;
+}
+
+.navname {
+    height: 70px;
+    position: relative; 
+    transition: 0.3s all;
+    cursor: pointer;
+    transform-origin: 50% 50%;
+}
+
+.navMF {
+    width: 200px;
+    height: 70px;
+    line-height: 70px;
+    color: #ff6700;
+    margin: 0px;
+    text-align: center;
+    border-bottom: 2px solid #ff6700;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 23px;
+
+}
+
+.navname:hover {
+    transform: rotateX(-360deg);
+}
+
+.navlogo {
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.navlist {
+    width: 100%;
+    height: 70px;
+    list-style: none;
+    padding-left: 15%;
+}
+
+.navitem {
+    float: left;
+    width: 16.5%;
+    height: 70px;
+    line-height: 70px;
+
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s linear;
+    cursor: pointer;
+    box-sizing: border-box;
+    position: relative;
+}
+.navitem a{
+    color: #333;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.line {
+    display: block;
+    width: 0px;
+    background-color: #ff6700;
+    height: 2px;
+    position: absolute;
+    z-index: 100;
+    transition: all 0.5s;
+    left: 50%;
+    bottom: 0px;
+}
+
+.navitem:hover a{
+    color: #ff6700;
+}
+
+.navitem:hover .line {
+    width: 80%;
+    left: 10%;
+}
+
+.navitem_show a{
+    color: #ff6700;
+}
+
+.line_show {
+    width: 80%;
+    left: 10%;
+}
+
+.navsearch {
+    width: 100%;
+    height: 80px;
+    position: relative;
+}
+
+.navsearch .search {
+    width: 100%;
+    height: 25px;
+    position: absolute;
+    top: 27.5px;
+    left: 0px;
+}
+
+.se_input {
+    width: 60%;
+    height: 25px;
+    border-radius: 10px;
+    border: none;
+    border: 1px solid #333;
+    outline: none;
+    padding: 0px 20px;
+    font-size: 14px;
+    position: absolute;
+    left: 20%;
+    transition: 0.5s all;
+}
+
+.se_input:hover {
+    border: 1px solid #ff6700;
+}
+
+.se_input:focus {
+    border: 1px solid #ff6700;
+    width: 90%;
+    left: 5%;
+}
+
+.se_btn {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 17px;
+    top: 3px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.se_icon {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.se_icon:hover {
+    fill: #ff6700;
+}
+.navListitem{
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    line-height: 60px;
+    transition: none;
+}
+.navListitem:hover{
+    background-color: #ff6700;
+    
+}
+.navListitem:hover .navlink{
+    color: white;
+     font-weight: 500;
+     transition: none;
+}
+.navlink{
+    color: black;
+    font-size: 20px;
+}
+.btn-Wrap{
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    right: 0px;
+    top: 15px;
+    border: none;
+}
+.wrapicon{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border: 1px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.wrapicon:hover{
+    fill: #ff6700;
+    border-color: #ff6700;
+}
+.smItemA a{
+    display: block;
+    width: 100%;
+    color: #333;
+
+}
+.smItemA a:hover{
+    color: #ff6700;
+}
+@media (max-width: 768px){
+    .container{
+        width: 100%;
+    }
+    .smLogo{
+        display: flex;
+        justify-content: center;
+    }
+    .navname{
+        height: 70px;
+        position: relative;
+        transition: 0.3s all;
+        cursor: pointer;
+        transform-origin: 50% 50%;
+    }
+    .username{
+        border:0;
+        border-radius:5px;
+        background-color:#fff;
+        width: 100%;
+        height: 100%;
+        padding: 15px;
+        resize: none;
+        outline: none;
+        padding-left: 15px;
+        font-size: 15px;
+        display: inline-block;
+        border-left: 2px solid rgba(208, 208, 208, 1);
+    }
+}
+
+@media (min-width: 768px) and (max-width: 992px){
+    .container{/*  */
+        width: 768px;
+    }
+}
+
+@media  (min-width: 992px) and (max-width: 1200px){
+    .container{
+        width: 992px;
+    }
+}
+
+@media  (min-width: 1200px) {
+    .container{
+        width: 1200px;
+    }
+}

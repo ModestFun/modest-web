@@ -1,0 +1,300 @@
+.wordCard{
+    width: 100%;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.8);
+    margin-top: 70px;
+    padding: 10px 30px;
+    animation: rightIn 1s both;
+}
+.commentCard{
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    margin-top: 20px;
+    animation: leftIn 1s both;
+}
+@keyframes leftIn{
+    0%{
+        opacity: 0;
+        transform: translate3d(100%,0,0);
+    }
+    50%{
+        opacity: 1;
+    }
+}
+@keyframes rightIn{
+    0%{
+        opacity: 0;
+        transform: translate3d(-100%,0,0);
+    }
+    50%{
+        opacity: 1;
+    }
+}
+
+.emojiList{
+    margin-top: 10px;
+    left: 30px;
+    width: 350px;
+    height: 200px;
+    list-style: none;
+    display: flex;
+    transition: all 0.5s;
+    opacity: 1;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    border: 2px solid #f1f1f1;
+    box-shadow: 0 0 20px rgba(0,0,0,.2);
+    padding: 0px;
+    position: absolute;
+    z-index: 10000;
+    background-color: #fff;
+}
+.emojiList li img{
+    margin: 0px 3px;
+    cursor: pointer;
+}
+.emojiList li img:hover{
+    border: 1px solid #ff6700;
+}
+#textarea{
+    border:0;
+    border-top: 1px dotted #333;
+    border-radius:5px;
+    background-color:#fff;
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    resize: none;
+    outline: none;
+    margin-bottom: 10px;
+}
+.user{
+    display: flex;
+    justify-content: space-around;
+}
+.username{
+   
+    border:0;
+    border-radius:5px;
+    background-color:#fff;
+    width: 45%;
+    height: 100%;
+    padding: 15px;
+    resize: none;
+    outline: none;
+    padding-left: 15px;
+    font-size: 15px;
+    margin-left: 30px;
+    display: inline-block;
+    border-left: 3px solid rgba(208, 208, 208, 1);
+}
+.email{
+    border:0;
+    border-radius:5px;
+    background-color:#fff;
+    width: 45%;
+    height: 100%;
+    padding: 15px;
+    resize: none;
+    outline: none;
+    padding-left: 15px;
+    font-size: 15px;
+    display: inline-block;
+    border-left: 2px solid rgba(208, 208, 208, 1);
+}
+.emailImg{
+    border-radius: 50%;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    padding: 0px;
+    margin-right: 20px;
+    margin-top: 5px;
+    background-color: #ff6700;
+}
+.headImg{
+    border-radius: 50%;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    padding: 0px;
+    margin-left: 10px;
+}
+.headImg img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+.commentItem{
+    padding: 20px 30px;
+    border-bottom: 1px dotted #333;
+}
+.commentContent{
+    width: 100%;
+    display: inline-block;
+}
+.commentHeadImg{
+    border-radius: 50%;
+    display: inline-block;
+    width: 100%;
+    height: 40px;
+    padding: 0px;
+    margin-left: 10px;
+}
+.commentHeadImg img{
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: 2px solid #f1f1f1;
+}
+.replyImg{
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: 2px solid #f1f1f1;
+}
+.emoji{
+    display: inline;
+}
+
+.faReply{
+    cursor: pointer;
+    color: #ff6700;
+}
+.sonReply{
+    cursor: pointer;
+    color: #ff6700;
+}
+.sonDiv{
+    padding-left: 50px;
+}
+.commentContent{
+    width: 100%;
+    margin-top: 15px;
+    padding-left: 40px;
+}
+.facontent{
+    background-color: #fff;
+    padding: 10px 20px;
+    word-wrap: break-word;
+}
+#replyArea{
+    border:0;
+    border-radius:5px;
+    background-color:#fff;
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    resize: none;
+    outline: none;
+    margin-bottom: 5px;
+}
+.sonName{
+    border:0;
+    border-radius:5px;
+    background-color:#fff;
+    width: 200px;
+    height: 100%;
+    padding: 5px;
+    resize: none;
+    outline: none;
+    padding-left: 15px;
+    font-size: 15px;
+    display: inline-block;
+}
+.reply{
+    width: 100%;
+    border-radius: 5px;
+    background-color: rgba(255, 103, 0, 0.2);
+    padding: 2px 20px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+.modestfun{
+    background-color: #ff6700;
+    color: white;
+    padding: 1px 6px;
+    border-radius: 3px;
+}
+@media (max-width: 768px){
+    .user{
+        display: block;
+        position: relative;
+    }
+    .username{
+        border:0;
+        border-radius:5px;
+        background-color:#fff;
+        width: 100%;
+        height: 100%;
+        padding: 15px;
+        resize: none;
+        outline: none;
+        padding-left: 15px;
+        font-size: 15px;
+        margin-left: 0px;
+        margin-top: 15px;
+        display: inline-block;
+        border-left: 3px solid rgba(208, 208, 208, 1);
+    }
+    .email{
+        border:0;
+        border-radius:5px;
+        background-color:#fff;
+        width: 100%;
+        height: 100%;
+        padding: 15px;
+        resize: none;
+        outline: none;
+        padding-left: 15px;
+        font-size: 15px;
+        display: inline-block;
+        border-left: 2px solid rgba(208, 208, 208, 1);
+        padding-right: 45px;
+       
+    }
+    .emailImg{
+        border-radius: 50%;
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        background-color: #ff6700;
+        margin-right: 10px;
+        right: 5px;
+    }
+    .wordCard{
+        width: 90%;
+        position: relative;
+        background-color: rgba(255, 255, 255, 0.8);
+        margin: 0px auto;
+        margin-top: 70px;
+        padding: 10px 30px;
+        animation: rightIn 1s both;
+    }
+    .commentCard{
+        width: 90%;
+        background-color: rgba(255, 255, 255, 0.8);
+        margin: 0px auto;
+        margin-top: 20px;
+        animation: leftIn 1s both;
+    }
+}
+
+.ant-message {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 14px;
+    font-variant: tabular-nums;
+    line-height: 1.5715;
+    list-style: none;
+    -webkit-font-feature-settings: 'tnum';
+    font-feature-settings: 'tnum';
+    position: fixed;
+    top: 85px;
+    left: 0;
+    z-index: 1010;
+    width: 100%;
+}

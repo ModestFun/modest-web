@@ -1,0 +1,15 @@
+.itemRow{
+    display: flex;
+    justify-content: space-between;
+}
+.itemCol{
+    width: 200px;
+    text-align: center;
+}
+.itemValue{
+    width: 200px;
+    text-align: center;
+}
+.itemRow h3{
+    font-weight: 600;
+}

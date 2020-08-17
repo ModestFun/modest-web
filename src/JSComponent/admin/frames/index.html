@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="thediv">
+
+    </div>
+    <script type="text/javascript">
+        function thediv(timespan){
+        var result=Math.floor((new Date()-new Date(timespan))/3600000/24);
+        var result2=Math.floor((new Date()-new Date(timespan))/1000/60/60/60);
+        var result3=Math.floor((new Date()-new Date(timespan))/1000/60%60);
+        var result4=Math.floor((new Date()-new Date(timespan))/1000%60);
+        console.log(result3)
+        //new Date(timespan)为开始日时间戳,new Date()为今天,同样取整数,或者Math.round四舍五入
+        document.getElementById("thediv").innerText="我们已经相爱了"+result+"天"+result2+"小时"+result3 + "分钟"+result4 + "秒";
+        }
+        window.setInterval("thediv('2020/2/22')", 0);
+        </script>
+</body>
+</html>

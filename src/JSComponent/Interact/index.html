@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="root">
+
+    </div>
+    <script>
+        // 获取一级评论渲染至页面
+        $.ajax({
+            url: "https://www.modestfun.com:8080/getFaWords"
+        }).then(res => {
+            console.log(res)
+            res.forEach(item => {
+                $(".root")[0].innerHTML += `
+                <div class="faDiv" id="`+ item._id + `" style="background-color:#ff6700;">` + item._id + `</div>
+                `
+            })
+            // 获取二级评论，渲染至页面
+            $.ajax({
+                url: "https://modestfun.com:8080/getsonWords"
+            }).then(res2 => {
+                console.log(res2)
+                res2.forEach(items => {
+                    for (var i = 0; i < res.length; i++) {
+                        if (items.faid == res[i]._id) {
+                            $("#" + res[i]._id)[0].innerHTML += `
+                            <div class="sonDiv" style="background-color:red;">`+ items._id +`
+                                <h3>`+items.sonName+` 回复`+items.faName+`</h3>    
+                            </div>
+                            `
+                        }
+                    }
+                })
+            })
+        })
+        // 存到sonWords 里需要的属性
+        /*
+            faid
+            faName
+
+            soncontent
+            sonName
+            time
+            _id
+
+            一级评论：  id_fa_
+                -faname => faname
+                -faid   => faid
+            回复：
+                1.根据id查fawords表获取详细内容
+                2.提交的时候，—_id + faname    
+            二级评论：  id_son_
+                -faname => faname
+                -faid   => faid
+            回复：
+                1.根据id查sonwords表获取详细内容
+                2.提交的时候,faid + sonname
+            三级评论：
+                -faname => 二级评论的sonname
+                -faid   => faid
+        */
+
+
+    </script>
+</body>
+
+</html>

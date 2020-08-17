@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <link rel="stylesheet" href="./assets/loading.css">
+  <!-- live 2d -->
+  <link rel="stylesheet" type="text/css" href="assets/waifu.css" />
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root">
+    <div id="robot">
+      <div class="piston">
+        <div class="rotator"></div>
+        <div class="block"> L
+          <div class="arm"></div>
+        </div>
+      </div>
+      <div class="piston">
+        <div class="rotator"></div>
+        <div class="block"> O
+          <div class="arm"></div>
+        </div>
+      </div>
+      <div class="piston">
+        <div class="rotator"></div>
+        <div class="block"> A
+          <div class="arm"></div>
+        </div>
+      </div>
+      <div class="piston">
+        <div class="rotator"></div>
+        <div class="block"> D
+          <div class="arm"></div>
+        </div>
+      </div>
+      <div class="piston">
+        <div class="rotator"></div>
+        <div class="block"> I
+          <div class="arm"></div>
+        </div>
+      </div>
+      <div class="piston">
+        <div class="rotator"></div>
+        <div class="block"> N
+          <div class="arm"></div>
+        </div>
+      </div>
+      <div class="piston">
+        <div class="rotator"></div>
+        <div class="block"> G
+          <div class="arm"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="waifu">
+    <div class="waifu-tips"></div>
+    <canvas id="live2d" width="280" height="250" class="live2d"></canvas>
+    <div class="waifu-tool">
+      <span class="fui-home"></span>
+      <!-- <span class="fui-chat"></span> -->
+      <!-- <span class="fui-eye"></span> -->
+      <span class="fui-user"></span>
+      <span class="fui-photo"></span>
+      <!-- <span class="fui-info-circle"></span> -->
+      <span class="fui-cross"></span>
+    </div>
+  </div>
+  <!-- live 2d -->
+  <script src="assets/waifu-tips.js"></script>
+  <script src="assets/live2d.js"></script>
+  <script type="text/javascript">initModel("assets/")</script>
+</body>
+
+</html>
