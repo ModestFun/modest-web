@@ -72,7 +72,7 @@ export default class Career extends Component {
             <div style={{ overflow: "hidden" }}>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>历程 | ModestFun</title>
+                    <title>历程 | Modest的个人博客</title>
                     <link rel="icon" href="https://modestfun.com:8080/img/?name=logo" />
                 </Helmet>
                 <div className="fixcontainer"></div>

@@ -33,7 +33,7 @@ export default class HomePage extends Component {
             <div className="appMain">
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>首页 | ModestFun</title>
+                    <title>首页 | Modest的个人博客</title>
                     <link rel="icon" href="https://modestfun.com:8080/img/?name=logo" />
                 </Helmet>
                 <div className="fixcontainer"></div>

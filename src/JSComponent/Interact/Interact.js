@@ -515,7 +515,7 @@ export default class Interact extends Component {
             <div style={{ overflow: "hidden" }}>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>留言 | ModestFun</title>
+                    <title>留言 | Modest的个人博客</title>
                     <link rel="icon" href="https://modestfun.com:8080/img/?name=logo" />
                 </Helmet>
                 <NavM></NavM>

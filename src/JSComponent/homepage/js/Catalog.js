@@ -38,12 +38,6 @@ export default class Catalog extends Component {
                 isShow: false
             },
             {
-                num: 6,
-                name: "LifetimesLove",
-                tagName: "王老师和米米",
-                isShow: false
-            },
-            {
                 num: 7,
                 name: "otherThings",
                 tagName: "其他",

@@ -13,7 +13,7 @@ function App() {
     <Frame>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Admin | ModestFun</title>
+        <title>Admin | Modest的管理页面</title>
         <link rel="icon" href="https://modestfun.com:8080/img/?name=logo" />
       </Helmet>
       <Switch>

@@ -29,7 +29,7 @@ export default class Login extends Component {
             <div className="container LoginMain">
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>Login | ModestFun</title>
+                    <title>Login | Modest的个人博客</title>
                     <link rel="icon" href="http://modest.fun:8080/img/?name=logo" />
                 </Helmet>
                 <div className="login">

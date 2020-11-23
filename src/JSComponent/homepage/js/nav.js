@@ -38,11 +38,6 @@ const menu = (
         </a>
         </Menu.Item>
         <Menu.Item>
-            <a target="_blank" rel="noopener noreferrer" href="/tags/LifetimesLove">
-                王老师和米米
-        </a>
-        </Menu.Item>
-        <Menu.Item>
             <a target="_blank" rel="noopener noreferrer" href="/tags/otherThings">
                 其他
         </a>
@@ -68,11 +63,6 @@ export default class NavM extends Component {
                 name: "留言",
                 isShow: false,
                 href: "/interact"
-            },
-            {
-                name: "米饭",
-                isShow: false,
-                href: "https://www.modestfun.com:520/mifan"
             },
             {
                 name: "友链",
