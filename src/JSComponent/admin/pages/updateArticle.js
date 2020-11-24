@@ -3,6 +3,7 @@ import "./css/ArticleEditor.css"
 import 'antd/dist/antd.css';
 import $ from "jquery"
 import { Upload, Button, Input, Radio, message } from 'antd';
+import { fileIp } from "../../../routes/index"
 const { TextArea } = Input;
 const fileList = []
 const props = {
@@ -12,13 +13,6 @@ const props = {
 };
 const success = () => {
     message.success('文章更新成功！');
-};
-
-const picError = () => {
-    message.error('图片文件格式错误或为空!只能上传.png或.jpg图片!');
-};
-const mdError = () => {
-    message.error('Markdown文件格式错误或为空!只能上传.md文件!');
 };
 const titleError = () => {
     message.error('主标题、副标题、内容简介均不可为空！');
@@ -54,7 +48,7 @@ export default class updateArticle extends Component {
         var titleText = $("#titleText")[0].value
         var contentType = this.state.contentType
         var contentTag = this.state.contentTag
-       
+
         var formdata = new FormData()
         if (headTitle != "" && contentTitle != "" && titleText != "") {
             if (this.state.md == "") {
@@ -77,7 +71,7 @@ export default class updateArticle extends Component {
             formdata.append("titleImg", titleImg)
             formdata.append("mdUrl", mdUrl)
             $.ajax({
-                url: "https://modestfun.com:8080/updataArticle",
+                url: fileIp.defaultIp + "/updataArticle",
                 data: formdata,
                 type: 'POST',
                 processData: false,//必须
@@ -96,10 +90,10 @@ export default class updateArticle extends Component {
     componentWillMount() {
         var _id = window.location.pathname.split("/")[3]
         $.ajax({
-            url: "https://modestfun.com:8080/getArticle?_id=" + _id
+            url: fileIp.defaultIp + "/getArticle?_id=" + _id
         }).then(res => {
-            var imgUrl = "https://modestfun.com:8080/articleImg/?name=" + res[0].titleImg
-            var mdUrl = "https://modestfun.com:8080/articleMd/?name=" + res[0].MdUrl
+            var imgUrl = fileIp.defaultIp + "/articleImg/?name=" + res[0].titleImg
+            var mdUrl = fileIp.defaultIp + "/articleMd/?name=" + res[0].MdUrl
             this.setState({
                 headTitle: res[0].headTitle,
                 contentTitle: res[0].contentTitle,
@@ -160,7 +154,6 @@ export default class updateArticle extends Component {
                         <Radio.Button value="学习笔记">学习笔记</Radio.Button>
                         <Radio.Button value="杂文集">杂文集</Radio.Button>
                         <Radio.Button value="技术分享">技术分享</Radio.Button>
-                        <Radio.Button value="王老师和米米">王老师和米米</Radio.Button>
                         <Radio.Button value="其他">其他</Radio.Button>
                     </Radio.Group>
                 </div>

@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Table, Tag, message } from 'antd'
 import "./css/allStyle.css"
 import $ from 'jquery'
+import { fileIp } from "../../../routes/index"
 const success = () => {
     message.success('删除成功!');
     window.location.reload(true)
@@ -16,7 +17,7 @@ export default class managementArticle extends Component {
     }
     componentWillMount() {
         var modestAxios = axios.create({
-            baseURL: "https://modestfun.com:8080"
+            baseURL: fileIp.defaultIp
         })
         modestAxios.get("/getArticleList")
             .then(res => res.data)
@@ -34,7 +35,7 @@ export default class managementArticle extends Component {
     removeActicle = (_id) => {
         if (window.confirm("你确定要删除这条说说吗")) {
             $.ajax({
-                url: "https://modestfun.com:8080/removeArticle?_id=" + _id
+                url: fileIp.defaultIp + "/removeArticle?_id=" + _id
             }).then(res => success())
 
         }
@@ -46,8 +47,8 @@ export default class managementArticle extends Component {
         const { data } = this.state
         return (
             <Table dataSource={data}>
-                 <Column title="#"
-                 render={(text,record,index)=>`${index+1}`} />
+                <Column title="#"
+                    render={(text, record, index) => `${index + 1}`} />
                 <Column title="主标题" dataIndex="headTitle" key="headTitle" />
                 <Column title="副标题" dataIndex="contentTitle" key="contentTitle" />
                 <Column title="内容简介" dataIndex="titleText" key="titleText" />

@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import NavM from "../homepage/js/nav";
 import { Helmet } from 'react-helmet';
 import { Tooltip, Progress } from 'antd';
-import aa from "./aa.m4a"
-import $ from "jquery"
 import "./about.css"
+import { fileIp } from "../../routes/index"
 const qqText = <span>点击QQ联系我</span>;
 const emailText = <span>我的邮箱：2770977202@qq.com</span>;
 const wxText = <span>我的微信：wzy990528</span>;
@@ -15,11 +14,11 @@ export default class About extends Component {
         skill: [
             {
                 name: "HTML5",
-                progress: 75
+                progress: 70
             },
             {
                 name: "CSS3",
-                progress: 75
+                progress: 70
             },
             {
                 name: "JavaScript",
@@ -39,23 +38,31 @@ export default class About extends Component {
             },
             {
                 name: "React.js",
-                progress: 70
+                progress: 60
             },
             {
                 name: "Express",
-                progress: 65
+                progress: 60
+            },
+            {
+                name: "Nest",
+                progress: 50
+            },
+            {
+                name: "TypeScript",
+                progress: 50
             },
             {
                 name: "MongoDB",
-                progress: 70
+                progress: 50
             },
             {
                 name: "BootStrap",
-                progress: 50
+                progress: 60
             },
             {
                 name: "Ant Design",
-                progress: 50
+                progress: 60
             },
             {
                 name: "Webpack",
@@ -74,10 +81,29 @@ export default class About extends Component {
                 progress: 40
             },
             {
+                name: "Docker",
+                progress: 60
+            },
+            {
+                name: "HTTP",
+                progress: 60
+            },
+            {
+                name: "Echarts",
+                progress: 50
+            },
+            {
                 name: "MySql",
                 progress: 30
             },
         ]
+    }
+    componentDidMount() {
+        const arr = this.state.skill
+        arr.sort((a, b) => b.progress - a.progress)
+        this.setState({
+            skill: arr
+        })
     }
     render() {
         const { skill } = this.state
@@ -85,20 +111,20 @@ export default class About extends Component {
             <div style={{ overflow: "hidden" }}>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>关于 | Modest的个人博客</title>
-                    <link rel="icon" href="https://modestfun.com:8080/img/?name=logo" />
+                    <title>关于 | ModestFun的个人博客</title>
+                    <link rel="icon" href={fileIp.defaultIp + "/img/?name=logo"} />
                 </Helmet>
                 <div className="fixcontainer"></div>
                 <NavM></NavM>
                 <div style={{ position: "relative", backgroundColor: "rgba(255,255,255,0)" }} className="container">
-                   
+
                     <div className="aboutMe">
                         <div className="myLogo">
-                            <img src="https://modestfun.com:8080/img/?name=logo" alt="" />
+                            <img src={fileIp.defaultIp + "/img/?name=logo"} alt="" />
                             <h2>ModestFun</h2>
                         </div>
                         <p>21届毕业生，软件工程专业，前端全栈工程师</p>
-                        <p id="locate"><svg t="1586935384783" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1914" width="16" height="16"><path d="M512.09064336 343.3563292a93.35895381 93.35895381 0 1 1-66.36359356 27.55776358A93.35895381 93.35895381 0 0 1 512.09064336 343.3563292m0-56.24033379a150.16169092 150.16169092 0 1 0 106.29423106 43.86746074A149.03688428 149.03688428 0 0 0 512.09064336 287.11599541z" fill="#ff6700" p-id="1915"></path><path d="M769.67137197 171.26090791a358.25092558 358.25092558 0 0 0-515.16145635 0 379.05984932 379.05984932 0 0 0 0 526.97192696L512.09064336 962l257.58072861-263.76716513a379.05984932 379.05984932 0 0 0 1e-8-526.97192696z m-38.80582998 489.85330693l-218.77489863 224.96133428-218.77489776-224.96133428a321.13230557 321.13230557 0 0 1 0-447.11065283 304.82260839 304.82260839 0 0 1 437.5497964 0 321.13230557 321.13230557 0 0 1 0 447.11065283z" fill="#ff6700" p-id="1916"></path></svg>黑龙江 - 哈尔滨</p>
+                        <p id="locate"><svg t="1586935384783" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1914" width="16" height="16"><path d="M512.09064336 343.3563292a93.35895381 93.35895381 0 1 1-66.36359356 27.55776358A93.35895381 93.35895381 0 0 1 512.09064336 343.3563292m0-56.24033379a150.16169092 150.16169092 0 1 0 106.29423106 43.86746074A149.03688428 149.03688428 0 0 0 512.09064336 287.11599541z" fill="#ff6700" p-id="1915"></path><path d="M769.67137197 171.26090791a358.25092558 358.25092558 0 0 0-515.16145635 0 379.05984932 379.05984932 0 0 0 0 526.97192696L512.09064336 962l257.58072861-263.76716513a379.05984932 379.05984932 0 0 0 1e-8-526.97192696z m-38.80582998 489.85330693l-218.77489863 224.96133428-218.77489776-224.96133428a321.13230557 321.13230557 0 0 1 0-447.11065283 304.82260839 304.82260839 0 0 1 437.5497964 0 321.13230557 321.13230557 0 0 1 0 447.11065283z" fill="#ff6700" p-id="1916"></path></svg>北京</p>
                         <div className="contact">
                             <Tooltip placement="top" title={qqText}>
                                 <a href="tencent://message/?uin=2770977202&Site=400301.com&Menu=yes">
@@ -122,7 +148,7 @@ export default class About extends Component {
                         </div>
                         <div className="readMe">
                             <p>
-                                我是一个乐观的理想主义，浪漫且善于发现生命中的美好，从前是个抗压能力较差的人，在岁月的洗礼下，也逐渐可以在压力面前保持优雅。我希望可以实现自己的理想，通过实现理想让人相信实现理想是可能，同时我也做好了完全的准备，希望我可以做到在幻灭面前保持理智。如果我失败了，不过是历史长河中又多了一个未实现理想的失败者，这不足为奇。假如我以我的方式成功了，或许通过实现理想并改变世界，让人们相信改变世界是可能的。
+                                我是一个乐观的理想主义，浪漫且善于发现生命中的美好，从前是个抗压能力较差的人，在岁月的洗礼下，也逐渐可以在压力面前保持优雅。我希望可以实现自己的理想，通过实现理想让人相信实现理想是可能的，同时我也做好了万全的准备，希望我可以做到在幻灭面前保持理智。如果我失败了，不过是历史长河中又多了一个未实现理想的失败者，这不足为奇。但假如我以我的方式成功了，或许通过实现理想并改变了世界，可以让人们相信改变世界是可能的。
                             </p>
                         </div>
                     </div>
@@ -149,21 +175,6 @@ export default class About extends Component {
 
                         </ul>
                     </div>
-                    {/*
-                        访问人数，待实现
-                        1.总访问量
-                        2.总访客数
-                        3.总IP数
-                        4.今日访问量
-                        5.今日访客数
-                        6.今日IP数
-                    <div className="spectator">
-                        <ul>
-                            <li>
-                                访问
-                                </li>
-                        </ul>
-                    </div> */}
                     <div className="aboutWebsite">
                         <h3>关于本站</h3>
                         <p>前端：React + Ant Design</p>

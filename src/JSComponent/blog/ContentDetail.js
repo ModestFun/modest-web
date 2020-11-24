@@ -4,6 +4,7 @@ import { Button, PageHeader, Checkbox, message, Input } from 'antd';
 import MarkDown from './Markdown'
 import CommentDetail from "./CommentDetail"
 import $ from "jquery"
+import { fileIp } from "../../routes/index"
 const emailWarning = () => {
     message.warning('检测到您输入的不是QQ邮箱，建议更换成QQ邮箱！');
 };
@@ -34,7 +35,7 @@ export default class ContentDetail extends Component {
     componentWillMount() {
         var str = window.location.pathname.split("/")[2]
         $.ajax({
-            url: "https://modestfun.com:8080/getCommentList?_id=" + str
+            url:  fileIp.defaultIp +"/getCommentList?_id=" + str
         }).then(res => {
             this.setState({
                 commentList: res,
@@ -50,7 +51,7 @@ export default class ContentDetail extends Component {
     commentReload = () => {
         var str = window.location.pathname.split("/")[2]
         $.ajax({
-            url: "https://modestfun.com:8080/getCommentList?_id=" + str
+            url:  fileIp.defaultIp +"/getCommentList?_id=" + str
         }).then(res => {
             this.setState({
                 commentList: res,
@@ -65,7 +66,7 @@ export default class ContentDetail extends Component {
 
         }).catch(err => console.log(err))
         $.ajax({
-            url: "https://modestfun.com:8080/remarkCount?_id=" + str
+            url:  fileIp.defaultIp +"/remarkCount?_id=" + str
         })
             .then(res => { })
             .catch(err => { console.log(err) })
@@ -116,7 +117,7 @@ export default class ContentDetail extends Component {
             formdata.append("date", date)
 
             $.ajax({
-                url: "https://modestfun.com:8080/addComment",
+                url:  fileIp.defaultIp +"/addComment",
                 data: formdata,
                 type: 'POST',
                 processData: false,//必须
@@ -130,11 +131,6 @@ export default class ContentDetail extends Component {
             this.scrollToAnchor('screens1')
         }
     }
-    // notReadCount =(_id)=>{
-    //     $.ajax({
-    //         url:"http://localhost:8080/notReadCount?_id="+_id
-    //     })
-    // }
     scrollToAnchor = (anchorName) => {
         if (anchorName) {
             let anchorElement = document.getElementById(anchorName);
@@ -183,11 +179,10 @@ export default class ContentDetail extends Component {
                 <PageHeader
                     className="site-page-header"
                     onBack={() => {
-                        window.location.href = "https://www.modestfun.com/"
+                        window.location.href =  fileIp.onLineIp
                     }}
                     style={{ backgroundColor: "rgba(255,255,255,0.8)", borderBottom: "1px solid rgba(0, 0, 0, 0.3)" }}
                     title={v.headTitle}
-                // subTitle={v.contentTitle}
                 />
                 <div className="contentTitle">
                     <h2 style={{ textAlign: "center", color: "#333" }}>【{v.contentType}】{v.contentTitle}</h2>
@@ -240,7 +235,6 @@ export default class ContentDetail extends Component {
                                 className="uEmail" style={{ width: "300px" }} placeholder="您的QQ邮箱" />
                             <h4>个人网站<span> ( 例: modestfun.com )</span></h4>
                             <Input className="uBlog" style={{ width: "300px" }} placeholder="选填，我信任您不会填写广告链接！" />
-                            {/* <h4>记住个人信息？<Checkbox onChange={(e) => this.onChange(e)}>Checkbox</Checkbox></h4> */}
                             <br />
                             <Button style={{ marginTop: "20px", marginLeft: "100px" }} type="primary" onClick={() => {
                                 if (canSpeak) {
@@ -249,7 +243,6 @@ export default class ContentDetail extends Component {
                                     speakError()
                                 }
                             }}>发表</Button>
-
                         </div>
                     </div>
                 </div>

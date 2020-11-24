@@ -4,14 +4,14 @@ import "antd/dist/antd.css";
 import "../css/appcontent.css";
 import axios from 'axios'
 import $ from "jquery"
-
+import { fileIp } from "../../../routes/index"
 import LazyLoad from 'react-lazyload';
 class Sectioon extends Component {
 
     render() {
         var { v } = this.props
         var date = v.date.split(".")
-        var imgUrl = "https://modestfun.com:8080/articleImg/?name=" + v.titleImg
+        var imgUrl = fileIp.defaultIp + "/articleImg/?name=" + v.titleImg
         var aHref = "/blog/" + v._id
         return (
 
@@ -83,7 +83,7 @@ export default class AppContent extends Component {
     }
     componentWillMount() {
         var modestAxios = axios.create({
-            baseURL: "https://modestfun.com:8080"
+            baseURL: fileIp.defaultIp
         })
         modestAxios.get("/getArticleList")
             .then(res => {
@@ -114,9 +114,6 @@ export default class AppContent extends Component {
         else if (tagName == "studyNotes") {
             return "学习笔记"
         }
-        else if (tagName == "LifetimesLove") {
-            return "王老师和米米"
-        }
         else if (tagName == "varia") {
             return "杂文集"
         }
@@ -144,7 +141,10 @@ export default class AppContent extends Component {
                     ))
                 }
                 <div className="appfooter">
-                    已经到底啦！如果你有什么好的想法，欢迎<a href="http://www.modestfun.com/interact">留言</a>告诉博主！
+                    已经到底啦！如果你有什么好的想法，欢迎<a onClick={(e) => {
+                        e.preventDefault()
+                        window.location.href = fileIp.onLineIp + "/interact"
+                    }}>留言</a>告诉博主！
                 </div>
             </div>
 

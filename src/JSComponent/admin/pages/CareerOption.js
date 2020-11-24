@@ -1,108 +1,68 @@
 import React, { Component } from 'react'
-import { Input, Button, DatePicker } from 'antd';
+import { Input, Button } from 'antd';
 import $ from 'jquery'
-import { Table, message, Upload } from 'antd'
-const { TextArea } = Input;
+import { Table, Tag, message } from 'antd'
+import { fileIp } from "../../../routes/index"
 const success = () => {
     message.success('删除成功!');
     window.location.reload(true)
 };
-const { Column } = Table;
+const { Column, ColumnGroup } = Table;
 export default class CareerOption extends Component {
     state = {
-        data: [],
-        date: ""
+        data: []
     }
     componentWillMount() {
         $.ajax({
-            url: "http://localhost:3030/api-career/getCareer"
+            url: fileIp.defaultIp + "/getCareer"
         }).then(res => {
-            if (res.success === 8001) {
-                res.message.forEach(item => {
-                    if (item.picPath) {
-                        $.ajax({ url: `http://localhost:3030/api-career${item.picPath}` })
-                            .then(r => {
-                                item.pic = r
-                            })
-                    }
-                })
-                this.setState({
-                    data: res.message
-                })
-            }
+            this.setState({
+                data: res
+            })
         })
     }
     submitClick = () => {
-        const obj = {
-            date: this.state.date,
-            content: $("#content")[0].value
-        }
-        if ($("#pic")[0].files[0]) {
-            const reader = new FileReader()
-            reader.readAsDataURL($("#pic")[0].files[0], "utf8")
-            reader.onload = () => {
-                obj.pic = reader.result
-                obj.picName = $("#fileName")[0].value
-                $.ajax({
-                    url: "http://localhost:3030/api-career/addCareer",
-                    data: JSON.stringify(obj),
-                    type: 'POST',
-                    contentType: "application/json",
-                    processData: false,//必须
-                }).then(res => {
-                    console.log(res)
-                })
-            }
-        } else {
-            $.ajax({
-                url: "http://localhost:3030/api-career/addCareer",
-                data: JSON.stringify(obj),
-                type: 'POST',
-                contentType: "application/json",
-                processData: false,//必须
-            }).then(res => {
-                console.log(res)
-            })
-        }
-
-
-
+        var year = $("#year")[0].value
+        var date = $("#date")[0].value
+        var content = $("#content")[0].value
+        var formdata = new FormData()
+        formdata.append("year", year)
+        formdata.append("date", date)
+        formdata.append("content", content)
+        $.ajax({
+            url: fileIp.defaultIp + "/addCareer",
+            data: formdata,
+            type: 'POST',
+            processData: false,//必须
+            contentType: false,//必须
+        }).then(res => {
+            window.location.reload(true)
+        })
     }
     removeFriend = (_id) => {
         if (window.confirm("你确定要删除这条历程吗？")) {
             $.ajax({
-                url: "https://modestfun.com:8080/removeCareer?_id=" + _id
+                url: fileIp.defaultIp + "/removeCareer?_id=" + _id
             }).then(res => success())
 
         }
     }
-    onChange(date, dateString) {
-        this.setState({
-            date: dateString
-        })
-    }
     render() {
         const { data } = this.state
+        console.log(data)
         return (
             <div>
-                <h3>请选择日期：</h3>
-                <DatePicker onChange={(date, dateString) => this.onChange(date, dateString)} />
-
-                <h3>内容:</h3>
-                <TextArea rows={4} style={{ width: "50%" }} id="content" />
-                <h3>配图：</h3>
-                <input type="file" name="pic" id="pic" />
-                <input type="input" name="fileName" id="fileName" />
-                <br />
-                <br />
+                <h3>年份:<Input id="year" style={{ width: "500px", marginLeft: "20px" }} placeholder="year" /></h3>
+                <h3>日期:<Input id="date" style={{ width: "500px", marginLeft: "20px" }} placeholder="date" /></h3>
+                <h3>内容:<Input id="content" style={{ width: "500px", fontSize: "12px", marginLeft: "20px" }} placeholder="content" /></h3>
                 <Button onClick={() => { this.submitClick() }}>提交</Button>
                 <hr />
                 <Table dataSource={data}>
                     <Column title="#"
                         render={(text, record, index) => `${index + 1}`} />
-                    <Column title="日期" dataIndex="date" key="date" />
-                    <Column title="内容" dataIndex="content" key="content" />
-                    <Column title="配图" render={(text, record, index) => <img style={{width:"100px",height:"50px"}} src={record.pic} />} />
+                    <Column title="年份" dataIndex="year" key="year" />
+                    <Column title="日期" render={(text, record, index) => `${record.data.date}`} />
+                    <Column title="内容" render={(text, record, index) => `${record.data.content}`} />
                     <Column
 
                         title="操作"
@@ -115,7 +75,7 @@ export default class CareerOption extends Component {
                     />
                 </Table>
 
-            </div >
+            </div>
         )
     }
 }

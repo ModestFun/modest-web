@@ -17,7 +17,21 @@ import FriendManage from "../JSComponent/admin/pages/FriendLink"
 import CareerOption from "../JSComponent/admin/pages/CareerOption"
 import FriendHandle from "../JSComponent/admin/pages/FriendHandle"
 import UpdataFriend from "../JSComponent/admin/pages/UpdataFriend"
-
+//  IP 端口  -  测试
+// export const fileIp = {
+//     defaultIp: "http://49.233.56.6:8080",
+//     onLineIp: "https://www.modestfun.com"
+// }
+export const fileIp = {
+    defaultIp: "https://www.modestfun.com:8080",
+    onLineIp: "https://www.modestfun.com"
+}
+// IP 端口  -  开发
+// export const fileIp = {
+//     defaultIp: "http://localhost:8840",
+//     otherIp: "http://localhost:9969",
+//     onLineIp: "http://localhost:3000"
+// }
 // 主要路由
 export const mainRoutes = [
     {

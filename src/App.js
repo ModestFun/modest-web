@@ -7,14 +7,14 @@ import {
 import { adminRoutes } from "./routes"
 import Frame from "./JSComponent/admin/frames/index"
 import { Helmet } from 'react-helmet';
-
+import { fileIp} from "./routes/index"
 function App() {
   return (
     <Frame>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Admin | Modest的管理页面</title>
-        <link rel="icon" href="https://modestfun.com:8080/img/?name=logo" />
+        <title>Admin | ModestFun的个人博客</title>
+        <link rel="icon" href={ fileIp.defaultIp +"/img/?name=logo"} />
       </Helmet>
       <Switch>
         {

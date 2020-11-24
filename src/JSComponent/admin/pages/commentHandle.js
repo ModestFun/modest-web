@@ -2,15 +2,15 @@ import React, { Component } from 'react'
 import $ from 'jquery'
 import { Table, Tag, message } from 'antd'
 import "./css/allStyle.css"
-
-const { Column, ColumnGroup } = Table;
+import { fileIp } from "../../../routes/index"
+const { Column } = Table;
 export default class commentHandle extends Component {
     state = {
         data: []
     }
     componentWillMount() {
         $.ajax({
-            url: "https://modestfun.com:8080/getArticleList"
+            url: fileIp.defaultIp + "/getArticleList"
         })
             .then(res => {
                 for (var i = 0; i < res.length; i++) {
@@ -27,7 +27,7 @@ export default class commentHandle extends Component {
                 })
             })
     }
-   
+
     enterComment = (_id) => {
         window.location.href = "/admin/commentHandle/" + _id
     }

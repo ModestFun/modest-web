@@ -1,14 +1,11 @@
 import React from 'react'
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Menu } from 'antd';
 // 在组件中使用路由 withRouter
 import { withRouter } from 'react-router-dom'
 import logo from '../img/logo.png'
 import 'antd/dist/antd.css';
 import '../css/admin.css'
 import { adminRoutes } from '../../../routes/index'
-
-
-
 const routes = adminRoutes.filter(route => {
     return route.isShow == true && route.types == "Article"
 }
@@ -28,9 +25,6 @@ const routes4 = adminRoutes.filter(route => {
 const { SubMenu } = Menu;
 const { Footer, Content, Sider } = Layout;
 
-function onFinish() {
-    console.log('finished!');
-}
 class Frame extends React.Component {
     componentWillMount() {
         var password = "password=528528+++"
@@ -40,8 +34,6 @@ class Frame extends React.Component {
         }
     }
     render() {
-        var begin = new Date('2020/03/26 12:00:00').getTime();
-        var date = Date.now() - begin
         return (
             <Layout style={{ minHeight: '100vh' }}>
                 <Sider style={{ position: "fixed", width: "100%", height: "100vh" }}>

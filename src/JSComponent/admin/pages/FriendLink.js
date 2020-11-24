@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import $ from 'jquery'
-import {  Button, Input, Radio } from 'antd';
-
+import { Button, Input, Radio } from 'antd';
+import { fileIp } from "../../../routes/index"
 export default class FriendLink extends Component {
     state = {
         pic: "",
@@ -17,7 +17,7 @@ export default class FriendLink extends Component {
     }
     componentWillMount() {
         $.ajax({
-            url: "https://modestfun.com:8080/getFriend"
+            url: fileIp.defaultIp + "/getFriend"
         }).then(res => {
             this.setState({
                 data: res
@@ -37,7 +37,7 @@ export default class FriendLink extends Component {
         formdata.append("describe", describe)
         formdata.append("friendType", friendType)
         $.ajax({
-            url: "https://modestfun.com:8080/addFriend",
+            url: fileIp.defaultIp + "/addFriend",
             data: formdata,
             type: 'POST',
             processData: false,//必须
@@ -46,7 +46,7 @@ export default class FriendLink extends Component {
             window.location.reload(true)
         })
     }
-   
+
     render() {
         return (
             <div>
@@ -80,8 +80,8 @@ export default class FriendLink extends Component {
                         <Button type="primary" onClick={() => { this.submitClick() }}>提交</Button>
                     </div>
                 </div>
-              
-               
+
+
             </div>
         )
     }

@@ -5,6 +5,7 @@ import { Button, Menu, Dropdown, message } from 'antd';
 import "./interact.css"
 import $ from "jquery"
 import { BackTop } from 'antd';
+import { fileIp } from "../../routes/index"
 const success = () => {
     message.success('留言发表成功！');
 };
@@ -50,9 +51,10 @@ export default class Interact extends Component {
         emoji: [],
         isshow: false
     }
+
     componentWillMount() {
         $.ajax({
-            url: "https://www.modestfun.com:8080/getEmoji"
+            url: fileIp.defaultIp + "/getEmoji"
         }).then(res => {
             var emoji = []
             for (var i = 0; i < res.length - 3; i++) {
@@ -65,7 +67,7 @@ export default class Interact extends Component {
     }
     componentDidMount() {
         $.ajax({
-            url: "https://www.modestfun.com:8080/getFaWords"
+            url: fileIp.defaultIp + "/getFaWords"
         }).then(res => {
             res.forEach(item => {
                 var isBZ = false
@@ -94,7 +96,7 @@ export default class Interact extends Component {
             this.faReplyClick()
 
             $.ajax({
-                url: "https://modestfun.com:8080/getsonWords"
+                url: fileIp.defaultIp + "/getsonWords"
             }).then(res2 => {
                 res2.forEach(item => {
                     item.sonContent = this.formatContent(item.sonContent)
@@ -120,7 +122,7 @@ export default class Interact extends Component {
                                     src = item.headImg
                                 }
                                 if (item.headImg.length == 13) {
-                                    src = "https://modestfun.com:8080/getPicStoreItem?name=" + item.headImg
+                                    src = fileIp.defaultIp + "/getPicStoreItem?name=" + item.headImg
                                 }
                                 son.innerHTML = `
                                 <hr />
@@ -168,7 +170,7 @@ export default class Interact extends Component {
                 $(".reply")[0].innerHTML = ""
             }
             $.ajax({
-                url: "https://modestfun.com:8080/getTheSonWords?_id=" + sonid
+                url: fileIp.defaultIp + "/getTheSonWords?_id=" + sonid
             }).then(sonResult => {
                 if (sonResult[0].email == "") {
                     sonResult[0].email = ""
@@ -185,7 +187,7 @@ export default class Interact extends Component {
                     list.forEach(items => {
                         if (str.search(items.name)) {
                             var cc = "[" + items.name + ']'
-                            str = str.replace(cc, `<img class="emoji" src="https://modestfun.com:8080/getTheEmoji?name=` + items.src + `" alt=""/>`)
+                            str = str.replace(cc, `<img class="emoji" src="${fileIp.defaultIp}/getTheEmoji?name=` + items.src + `" alt=""/>`)
                         }
                     })
                 }
@@ -222,7 +224,7 @@ export default class Interact extends Component {
                 $(".reply")[0].innerHTML = ""
             }
             $.ajax({
-                url: "https://modestfun.com:8080/getTheFaWords?_id=" + faid
+                url: fileIp.defaultIp + "/getTheFaWords?_id=" + faid
             }).then(faResult => {
 
                 // content格式处理
@@ -236,7 +238,7 @@ export default class Interact extends Component {
                     list.forEach(items => {
                         if (str.search(items.name)) {
                             var cc = "[" + items.name + ']'
-                            str = str.replace(cc, `<img class="emoji" src="https://modestfun.com:8080/getTheEmoji?name=` + items.src + `" alt=""/>`)
+                            str = str.replace(cc, `<img class="emoji" src="${fileIp.defaultIp}/getTheEmoji?name=` + items.src + `" alt=""/>`)
                         }
                     })
                 }
@@ -268,7 +270,7 @@ export default class Interact extends Component {
             list.forEach(items => {
                 if (aa.search(items.name)) {
                     var cc = "[" + items.name + ']'
-                    aa = aa.replace(cc, `<img class="emoji" src="https://modestfun.com:8080/getTheEmoji?name=` + items.src + `" alt=""/>`)
+                    aa = aa.replace(cc, `<img class="emoji" src="${fileIp.defaultIp}/getTheEmoji?name=` + items.src + `" alt=""/>`)
                 }
             })
         }
@@ -290,11 +292,11 @@ export default class Interact extends Component {
     }
     sendEmailToFa = (faid, sonContent) => {
         $.ajax({
-            url: "https://modestfun.com:8080/getTheFaWords?_id=" + faid
+            url: fileIp.defaultIp + "/getTheFaWords?_id=" + faid
         }).then(res => {
             if (res[0].email != "") {
                 $.ajax({
-                    url: "https://modestfun.com:8080/sendEmail?name=" + res[0].username + "&&con=" + sonContent + "&&email=" + res[0].email
+                    url: fileIp.defaultIp + "/sendEmail?name=" + res[0].username + "&&con=" + sonContent + "&&email=" + res[0].email
                 }).then(res => {
                     console.log("success")
                 })
@@ -303,15 +305,15 @@ export default class Interact extends Component {
     }
     sendEmailToSon = (sonId, sonContent) => {
         $.ajax({
-            url: "https://www.modestfun.com:8080/getTheSonWords?_id=" + sonId
+            url: fileIp.defaultIp + "/getTheSonWords?_id=" + sonId
         }).then(res => {
             console.log(res)
             if (res[0].email != "") {
                 $.ajax({
-                    url: "https://www.modestfun.com:8080/sendEmail?name=" + res[0].sonName + "&&con=" + sonContent + "&&email=" + res[0].email
+                    url: fileIp.defaultIp + "/sendEmail?name=" + res[0].sonName + "&&con=" + sonContent + "&&email=" + res[0].email
                 }).then(res => {
                     console.log("success")
-                }).catch(err=>{
+                }).catch(err => {
                     console.log(err)
                 })
             }
@@ -353,7 +355,7 @@ export default class Interact extends Component {
                 formdata.append("IP", IP)
                 formdata.append("headImg", headImg)
                 $.ajax({
-                    url: "https://modestfun.com:8080/addFaWords",
+                    url: fileIp.defaultIp + "/addFaWords",
                     data: formdata,
                     type: 'POST',
                     processData: false,//必须
@@ -404,7 +406,7 @@ export default class Interact extends Component {
                     formdata.append("IP", IP)
                     formdata.append("headImg", headImg)
                     $.ajax({
-                        url: "https://modestfun.com:8080/addSonWords",
+                        url: fileIp.defaultIp + "/addSonWords",
                         data: formdata,
                         type: 'POST',
                         processData: false,//必须
@@ -454,7 +456,7 @@ export default class Interact extends Component {
                     formdata.append("IP", IP)
                     formdata.append("headImg", headImg)
                     $.ajax({
-                        url: "https://modestfun.com:8080/addSonWords",
+                        url: fileIp.defaultIp + "/addSonWords",
                         data: formdata,
                         type: 'POST',
                         processData: false,//必须
@@ -486,25 +488,23 @@ export default class Interact extends Component {
         if (e.indexOf("@") != -1) {
             if (e.split("@")[1] == "qq.com") {
                 $(".emailImg")[0].src = str
-            }else {
-                $(".emailImg")[0].src = "https://modestfun.com:8080/getPicStoreItem?name=1588142046844"
+            } else {
+                $(".emailImg")[0].src = fileIp.defaultIp + "/getPicStoreItem?name=1588142046844"
             }
         }
         if (e.indexOf("@") == -1) {
-            $(".emailImg")[0].src = "https://modestfun.com:8080/getPicStoreItem?name=1588142046844"
-            if(e.split("@")[1] != "qq.com"){
-                $(".emailImg")[0].src = "https://modestfun.com:8080/getPicStoreItem?name=1588142046844"
+            $(".emailImg")[0].src = fileIp.defaultIp + "/getPicStoreItem?name=1588142046844"
+            if (e.split("@")[1] != "qq.com") {
+                $(".emailImg")[0].src = fileIp.defaultIp + "/getPicStoreItem?name=1588142046844"
             }
         }
-        // http://r.qzone.qq.com/fcg-bin/cgi_get_portrait.fcg?uins=QQ号
-
     }
     isQQEmail = (email) => {
         if (email.indexOf("@") != -1) {
             if (email.split("@")[1] != "qq.com") {
                 emailWarning()
             }
-        }else {
+        } else {
             emailWarning()
         }
     }
@@ -515,8 +515,8 @@ export default class Interact extends Component {
             <div style={{ overflow: "hidden" }}>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>留言 | Modest的个人博客</title>
-                    <link rel="icon" href="https://modestfun.com:8080/img/?name=logo" />
+                    <title>留言 | ModestFun的个人博客</title>
+                    <link rel="icon" href={fileIp.defaultIp + "/img/?name=logo"} />
                 </Helmet>
                 <NavM></NavM>
 
@@ -533,17 +533,11 @@ export default class Interact extends Component {
 
                             </div>
                             <h3 className="user">
-                                {/* <Dropdown overlay={menu}>
-                                    <Button className="headImg"><img src="https://modestfun.com:8080/getPicStoreItem?name=1586239721432" id="1586239721432" /></Button>
-                                </Dropdown> */}
-                                <img ref={node => this.headImg = node} className="emailImg" src="https://modestfun.com:8080/getPicStoreItem?name=1588142046844" alt="" />
+                                <img ref={node => this.headImg = node} className="emailImg" src={fileIp.defaultIp + "/getPicStoreItem?name=1588142046844"} alt="" />
                                 <input ref={node => this.email = node} onChange={(e) => this.emailChange(e.target.value)}
                                     onBlur={(e) => { this.isQQEmail(e.target.value) }}
                                     className="email" type="text" placeholder="输入QQ邮箱可拉取头像" />
                                 <input maxLength="18" className="username" type="text" placeholder="昵称或笔名" />
-                                {/* http://q4.qlogo.cn/g?b=qq&nk=s@qq.com&s=3 */}
-                                {/* http://q4.qlogo.cn/g?b=qq&nk=2770977202@qq.com&s=3  */}
-
                             </h3>
                             <h3 onClick={(e) => this.emojiList(e)} style={{ borderRadius: "5px", marginBottom: "0px", padding: "10px 10px", backgroundColor: "white" }}>
                                 <svg style={{ cursor: "pointer", marginLeft: "7px" }} t="1586229799687" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1930" width="18" height="18"><path d="M512 1024C230.4 1024 0 793.6 0 512S230.4 0 512 0s512 230.4 512 512-230.4 512-512 512z m0-981.333333C251.733333 42.666667 42.666667 251.733333 42.666667 512s209.066667 469.333333 469.333333 469.333333 469.333333-209.066667 469.333333-469.333333S772.266667 42.666667 512 42.666667z" p-id="1931" fill="#ff6700"></path><path d="M298.666667 384m-42.666667 0a42.666667 42.666667 0 1 0 85.333333 0 42.666667 42.666667 0 1 0-85.333333 0Z" p-id="1932" fill="#ff6700"></path><path d="M725.333333 384m-42.666666 0a42.666667 42.666667 0 1 0 85.333333 0 42.666667 42.666667 0 1 0-85.333333 0Z" p-id="1933" fill="#ff6700"></path><path d="M520.533333 806.4c-132.266667 0-226.133333-68.266667-281.6-204.8-4.266667-12.8 0-21.333333 12.8-29.866667 12.8-4.266667 21.333333 0 29.866667 12.8 51.2 119.466667 128 174.933333 243.2 174.933334s187.733333-55.466667 226.133333-174.933334c4.266667-12.8 17.066667-17.066667 25.6-12.8 12.8 4.266667 17.066667 17.066667 12.8 25.6-46.933333 140.8-136.533333 209.066667-268.8 209.066667z" p-id="1934" fill="#ff6700"></path></svg>
@@ -551,7 +545,7 @@ export default class Interact extends Component {
                                     {
                                         emoji.map((v, k) => (
                                             <li key={k}>
-                                                <img onClick={(e) => this.emojiClick(e.target)} src={"https://modestfun.com:8080/getTheEmoji?name=" + v.src} alt={v.name} />
+                                                <img onClick={(e) => this.emojiClick(e.target)} src={fileIp.defaultIp + "/getTheEmoji?name=" + v.src} alt={v.name} />
                                             </li>
                                         ))
                                     }
@@ -566,7 +560,6 @@ export default class Interact extends Component {
                         </div>
                     </div>
                     <div className="commentCard">
-
                     </div>
                 </div>
                 <BackTop />

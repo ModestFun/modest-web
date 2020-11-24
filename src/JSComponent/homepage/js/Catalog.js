@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import "../css/catalog.css"
 import { List } from 'antd'
 import $ from 'jquery'
-
+import { fileIp } from "../../../routes/index"
 
 export default class Catalog extends Component {
     state = {
@@ -15,30 +15,24 @@ export default class Catalog extends Component {
             },
             {
                 num: 2,
-                name: "personalDiary",
-                tagName: "个人日记",
-                isShow: false
-            },
-            {
-                num: 3,
                 name: "studyNotes",
                 tagName: "学习笔记",
                 isShow: false
             },
             {
-                num: 4,
+                num: 3,
                 name: "varia",
                 tagName: "杂文集",
                 isShow: false
             },
             {
-                num: 5,
+                num: 4,
                 name: "techniqueSharing",
                 tagName: "技术分享",
                 isShow: false
             },
             {
-                num: 7,
+                num: 5,
                 name: "otherThings",
                 tagName: "其他",
                 isShow: false
@@ -48,7 +42,7 @@ export default class Catalog extends Component {
     }
 
     componentWillMount() {
-        if (window.location.pathname == "/" || window.location.pathname.split("/")[1] == "tags") {
+        if (window.location.pathname === "/" || window.location.pathname.split("/")[1] === "tags") {
             this.setState({
                 ishome: true
             })
@@ -57,30 +51,18 @@ export default class Catalog extends Component {
                 ishome: false
             })
         }
-        const hotArticle = Array(5)
         $.ajax({
-            url: "https://modestfun.com:8080/getArticleList"
+            url: fileIp.defaultIp + "/getArticleList"
         }).then(res => {
-            for (var i = 0; i < res.length; i++) {
-                for (var j = i; j < res.length; j++) {
-                    if (res[i].browseNum < res[j].browseNum) {
-                        var max = res[j]
-                        res[j] = res[i]
-                        res[i] = max
-                    }
-                }
-            }
-            var yuliu = {
-                headTitle: "这里还是空的"
-            }
+            const hotArticle = []
+            res.sort((a, b) => b.browseNum - a.browseNum)
             for (var k = 0; k < 5; k++) {
-                if (res[k] == undefined) {
-                    res[k] = yuliu
+                if (res[k]) {
+                    hotArticle[k] = res[k]
                 }
-                hotArticle[k] = res[k]
             }
             this.setState({
-                hotArticle: hotArticle
+                hotArticle
             })
         })
     }
@@ -97,6 +79,7 @@ export default class Catalog extends Component {
         }, 0);
         var tagName = window.location.pathname.split("/")[2]
         var newData = []
+        console.log(this.state.data)
         newData = this.state.data
         newData.forEach(item => {
             item.isShow = false
@@ -158,11 +141,10 @@ export default class Catalog extends Component {
         return (
             <div id="stopHere" className="catalog">
                 <div className="catalogTop">
-                    <h3>From nobody to somebody</h3>
+                    <h3>压力面前保持优雅</h3>
                     <h3 style={{ marginBottom: "0px" }}><span><svg t="1586954364898" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3063" width="16" height="16"><path d="M487.808 200c172.032 0 312 139.968 312 312s-139.968 312-312 312-312-139.968-312-312 139.904-312 312-312m0-104c-229.76 0-416 186.24-416 416 0 229.824 186.24 416 416 416 229.824 0 416-186.176 416-416 0-229.76-186.24-416-416-416m104 572.032c-13.312 0-26.624-5.12-36.8-15.168L451.072 548.8c-9.408-9.28-15.232-22.272-15.232-36.608V304c0-28.8 23.232-52.032 52.032-52.032S539.904 275.2 539.904 304v186.496l88.768 88.704c20.288 20.288 20.288 53.248 0 73.536-10.24 10.176-23.552 15.296-36.864 15.296" p-id="3064" fill="#ffffff"></path></svg></span><span className="travelTime"></span></h3>
                 </div>
                 <List
-
                     className="tagsLog"
                     bordered
                     size="large">
@@ -180,24 +162,22 @@ export default class Catalog extends Component {
                     {
                         hotArticle.map((v, k) => (
                             <div className="hotItemA" key={k}>
-                                <span className={k + 1 == 1 ? "spanNum spanNum1" : k + 1 == 2 ? "spanNum spanNum2" : k + 1 == 3 ? "spanNum spanNum3" : "spanNum"}>{k + 1}</span>
-                                <a className={k + 1 == 1 ? "hotA hotA1" : k + 1 == 2 ? "hotA hotA2" : k + 1 == 3 ? "hotA hotA3" : "hotA"} href={"/blog/" + v._id}> {v.headTitle}</a>
+                                <span className={k + 1 === 1 ? "spanNum spanNum1" : k + 1 === 2 ? "spanNum spanNum2" : k + 1 === 3 ? "spanNum spanNum3" : "spanNum"}>{k + 1}</span>
+                                <a className={k + 1 === 1 ? "hotA hotA1" : k + 1 === 2 ? "hotA hotA2" : k + 1 === 3 ? "hotA hotA3" : "hotA"} href={"/blog/" + v._id}> {v.headTitle}</a>
                             </div>
                         ))
                     }
                 </div>
-                {
-                    ishome ? "" : <div id="stopHere2" className="toolLog">
+                <div id="stopHere2" style={ishome ? { display: "none" } : { display: "block" }} className="toolLog">
 
-                        <h2 style={{ textAlign: "center", color: "#ff6700", fontWeight: "600" }}>工具栏</h2>
-                        <div className="toolItemA">
-                            <a className="toolA" onClick={() => { this.scrollToAnchor('screens1') }}>去到留言</a>
-                        </div>
-                        <div className="toolItemA">
-                            <a className="toolA" onClick={() => { this.scrollToAnchor('screens2') }}>去发表看法</a>
-                        </div>
+                    <h2 style={{ textAlign: "center", color: "#ff6700", fontWeight: "600" }}>工具栏</h2>
+                    <div className="toolItemA">
+                        <a className="toolA" onClick={() => { this.scrollToAnchor('screens1') }}>去到留言</a>
                     </div>
-                }
+                    <div className="toolItemA">
+                        <a className="toolA" onClick={() => { this.scrollToAnchor('screens2') }}>去发表看法</a>
+                    </div>
+                </div>
             </div >
         )
     }

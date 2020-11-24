@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Upload, Modal, Button, message } from 'antd';
 import $ from "jquery"
-
+import { fileIp } from "../../../routes/index"
 const success = () => {
     message.success('图片上传成功');
 };
@@ -25,7 +25,7 @@ export default class PicStore extends Component {
     };
     componentWillMount() {
         $.ajax({
-            url: "https://modestfun.com:8080/getPicStore"
+            url: fileIp.defaultIp + "/getPicStore"
         }).then(res => {
             var picStore = []
             res.forEach(item => {
@@ -33,13 +33,13 @@ export default class PicStore extends Component {
                 aaa.uid = "-" + item.uid
                 aaa.name = item.uid
                 aaa.status = "done"
-                aaa.url = "https://modestfun.com:8080/getPicStoreItem?name=" + item.uid
+                aaa.url = fileIp.defaultIp + "/getPicStoreItem?name=" + item.uid
                 aaa._id = item._id
                 picStore.push(aaa)
             })
 
             this.setState({
-                picStore : picStore.reverse()
+                picStore: picStore.reverse()
             })
         })
     }
@@ -67,7 +67,7 @@ export default class PicStore extends Component {
             formdata.append("picture", item.originFileObj)
         })
         $.ajax({
-            url: "https://modestfun.com:8080/addPic",
+            url: fileIp.defaultIp + "/addPic",
             data: formdata,
             type: 'POST',
             processData: false,//必须
@@ -78,10 +78,10 @@ export default class PicStore extends Component {
             }
         })
     }
-    removeItem = (e)=>{
-        if(window.confirm("你确定要删除这张照片吗？")){
+    removeItem = (e) => {
+        if (window.confirm("你确定要删除这张照片吗？")) {
             $.ajax({
-                url:"https://modestfun.com:8080/removePicStoreItem?_id="+ e._id
+                url: fileIp.defaultIp + "/removePicStoreItem?_id=" + e._id
             })
             window.location.reload(true)
         }
@@ -114,7 +114,7 @@ export default class PicStore extends Component {
                 <Upload
                     listType="picture-card"
                     fileList={picStore}
-                    onRemove={(e)=>this.removeItem(e)}
+                    onRemove={(e) => this.removeItem(e)}
                     onPreview={this.handlePreview}
                 >
                 </Upload>

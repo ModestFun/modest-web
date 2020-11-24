@@ -10,6 +10,7 @@ import { BackTop } from 'antd';
 import NavM from "../homepage/js/nav.js";
 import ContentDetail from "./ContentDetail"
 import Catalog from "./Catalog"
+import { fileIp } from "../../routes/index"
 class BlogFrames extends Component {
     state = {
         conDetail: {},
@@ -19,7 +20,7 @@ class BlogFrames extends Component {
         var str = window.location.pathname.split("/")[2]
 
         var modestAxios = axios.create({
-            baseURL: "https://www.modestfun.com:8080"
+            baseURL: fileIp.defaultIp
         })
         modestAxios.get("/browseNumCount?_id=" + str)
             .then(res => {
@@ -52,8 +53,8 @@ class BlogFrames extends Component {
             <div className="appMain">
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>Blog | ModestFun</title>
-                    <link rel="icon" href="https://www.modestfun.com:8080/img/?name=logo" />
+                    <title>文章 | ModestFun的个人博客</title>
+                    <link rel="icon" href={fileIp.defaultIp+"/img/?name=logo"} />
                 </Helmet>
                 <NavM></NavM>
                 {/* <a style={{opacity:"0"}} href="#" id='screens3'>&nbsp;</a> */}

@@ -3,7 +3,7 @@ import "./css/ArticleEditor.css"
 import 'antd/dist/antd.css';
 import $ from "jquery"
 import { Upload, Button, Input, Radio, message } from 'antd';
-
+import { fileIp } from "../../../routes/index"
 const { TextArea } = Input;
 const fileList = []
 const props = {
@@ -74,7 +74,7 @@ export default class createArticle extends Component {
                 var checkMd = mdUrl.name.split(".")[1]
                 if (checkMd == "md" && (checkImg == "png" || checkImg == "jpg" || checkImg == "jpeg")) {
                     $.ajax({
-                        url: "https://modestfun.com:8080/addArticle",
+                        url:  fileIp.defaultIp +"/addArticle",
                         data: formdata,
                         type: 'POST',
                         processData: false,//必须

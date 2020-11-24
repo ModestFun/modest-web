@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import $ from 'jquery'
-import { Button, Input, Radio,message } from 'antd';
+import { Button, Input, Radio, message } from 'antd';
+import { fileIp } from "../../../routes/index"
 const success = () => {
     message.success('友链更新成功！');
 };
@@ -23,7 +24,7 @@ export default class UpdataFriend extends Component {
         var _id = window.location.pathname.split("/")[3]
         console.log(_id)
         $.ajax({
-            url: "https://modestfun.com:8080/getTheFriend?_id=" + _id
+            url: fileIp.defaultIp + "/getTheFriend?_id=" + _id
         }).then(res => {
             console.log(res)
             this.setState({
@@ -50,7 +51,7 @@ export default class UpdataFriend extends Component {
         formdata.append("describe", describe)
         formdata.append("friendType", friendType)
         $.ajax({
-            url: "https://modestfun.com:8080/updataFriend",
+            url: fileIp.defaultIp + "/updataFriend",
             data: formdata,
             type: 'POST',
             processData: false,//必须

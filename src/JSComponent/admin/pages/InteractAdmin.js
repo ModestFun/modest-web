@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Table, Tag, message } from 'antd'
 import "./css/allStyle.css"
 import $ from 'jquery'
+import { fileIp } from "../../../routes/index"
 const success = () => {
     message.success('删除成功!');
     window.location.reload(true)
@@ -14,13 +15,13 @@ export default class InteractAdmin extends Component {
     }
     componentWillMount() {
         $.ajax({
-            url: "https://modestfun.com:8080/getFaWords"
+            url: fileIp.defaultIp +"/getFaWords"
         }).then(res => {
             this.setState({
                 faList: res
             })
             $.ajax({
-                url: "https://modestfun.com:8080/getSonWords"
+                url: fileIp.defaultIp +"/getSonWords"
             }).then(res2 => {
                 this.setState({
                     sonList: res2
@@ -31,7 +32,7 @@ export default class InteractAdmin extends Component {
     removeFaWords = (_id) => {
         if (window.confirm("你确定要删除这条说说吗")) {
             $.ajax({
-                url: "https://modestfun.com:8080/removeFaWords?_id=" + _id
+                url: fileIp.defaultIp +"/removeFaWords?_id=" + _id
             }).then(res => success())
 
         }
@@ -39,7 +40,7 @@ export default class InteractAdmin extends Component {
     removeSonWords = (_id) => {
         if (window.confirm("你确定要删除这条说说吗")) {
             $.ajax({
-                url: "https://modestfun.com:8080/removeSonWords?_id=" + _id
+                url: fileIp.defaultIp +"/removeSonWords?_id=" + _id
             }).then(res => success())
 
         }

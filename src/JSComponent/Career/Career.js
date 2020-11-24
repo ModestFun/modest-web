@@ -4,13 +4,14 @@ import "./career.css"
 import { Helmet } from 'react-helmet';
 import { Row, Col } from 'antd';
 import $ from "jquery"
+import { fileIp } from "../../routes/index"
 export default class Career extends Component {
     state = {
         list: []
     }
     componentWillMount() {
         $.ajax({
-            url: "https://modestfun.com:8080/getCareer"
+            url: fileIp.defaultIp + "/getCareer"
         }).then(res => {
             var list = []
             var a2017 = {
@@ -72,15 +73,15 @@ export default class Career extends Component {
             <div style={{ overflow: "hidden" }}>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>历程 | Modest的个人博客</title>
-                    <link rel="icon" href="https://modestfun.com:8080/img/?name=logo" />
+                    <title>日记 | ModestFun的个人博客</title>
+                    <link rel="icon" href={fileIp.defaultIp + "/img/?name=logo"} />
                 </Helmet>
                 <div className="fixcontainer"></div>
                 <NavM></NavM>
 
                 <div style={{ position: "relative" }} className="container ">
                     <Row>
-                        <Col style={{position:"relative"}} offset={1} xl={22} lg={22} md={22} xs={22} sm={21}>
+                        <Col style={{ position: "relative" }} offset={1} xl={22} lg={22} md={22} xs={22} sm={21}>
                             <div className="timeLineLine"></div>
                             <div className="timeLine">
                                 <h1 className="titmeLineTitle">

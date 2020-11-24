@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import "./contentDetail.css"
 import $ from "jquery"
-
+import { fileIp } from "../../routes/index"
 export default class CommentDetail extends Component {
     spanClick = (e) => {
         $.ajax({
-            url: "https://www.modestfun.com:8080/getTheComment?_id=" + e
+            url: fileIp.defaultIp +"/getTheComment?_id=" + e
         }).then(res => {
             if (res[0].content.substring(0, 18) == `<div class="atSB">`) {
                 res[0].content = res[0].content.split("<br/>")[1]

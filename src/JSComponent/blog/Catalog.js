@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import { List } from 'antd'
-import MarkNav from 'markdown-navbar'
 import $ from 'jquery'
-
+import { fileIp } from "../../routes/index"
 export default class Catalog extends Component {
     state = {
         ishome: false,
@@ -23,7 +21,7 @@ export default class Catalog extends Component {
         }
         const hotArticle = Array(5)
         $.ajax({
-            url: "https://modestfun.com:8080/getArticleList"
+            url: fileIp.defaultIp +"/getArticleList"
         }).then(res => {
             for (var i = 0; i < res.length; i++) {
                 for (var j = i; j < res.length; j++) {
@@ -48,10 +46,10 @@ export default class Catalog extends Component {
             })
             var id = window.location.pathname.split("/")[2]
             $.ajax({
-                url: "https://modestfun.com:8080/getArticle?_id=" + id
+                url: fileIp.defaultIp +"/getArticle?_id=" + id
             }).then(res => {
                 $.ajax({
-                    url: "https://modestfun.com:8080/articleMd?name=" + res[0].MdUrl
+                    url: fileIp.defaultIp +"/articleMd?name=" + res[0].MdUrl
                 }).then(res2 => {
                     this.setState({
                         markdown: res2

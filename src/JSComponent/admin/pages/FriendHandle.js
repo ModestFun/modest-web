@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import $ from 'jquery'
 import { Table, message } from 'antd'
+import { fileIp } from "../../../routes/index"
 const success = () => {
     message.success('删除成功!');
     window.location.reload(true)
@@ -12,7 +13,7 @@ export default class FriendHandle extends Component {
     }
     componentWillMount() {
         $.ajax({
-            url: "https://modestfun.com:8080/getFriend"
+            url: fileIp.defaultIp +"/getFriend"
         }).then(res => {
             this.setState({
                 data: res
@@ -22,7 +23,7 @@ export default class FriendHandle extends Component {
     removeFriend = (_id) => {
         if (window.confirm("你确定要删除这条友链吗？")) {
             $.ajax({
-                url: "https://modestfun.com:8080/removeFriend?_id=" + _id
+                url: fileIp.defaultIp +"/removeFriend?_id=" + _id
             }).then(res => success())
 
         }

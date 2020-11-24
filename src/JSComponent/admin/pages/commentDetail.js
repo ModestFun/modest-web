@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import $ from "jquery"
 import { Table, message } from 'antd'
-
+import { fileIp } from "../../../routes/index"
 const success = () => {
     message.success('删除成功!');
 };
@@ -13,11 +13,11 @@ export default class commentDetail extends Component {
     componentWillMount() {
         var str = window.location.pathname.split("/")[3]
         $.ajax({
-            url: "https://modestfun.com:8080/getCommentList?_id=" + str
+            url: fileIp.defaultIp +"/getCommentList?_id=" + str
         })
             .then(res => {
                 $.ajax({
-                    url: "https://modestfun.com:8080/getArticle?_id=" + str
+                    url: fileIp.defaultIp +"/getArticle?_id=" + str
                 })
                     .then(result => {
                         for (var i = 0; i < result[0].notRead; i++) {
@@ -32,17 +32,17 @@ export default class commentDetail extends Component {
     componentDidMount() {
         var str = window.location.pathname.split("/")[3]
         $.ajax({
-            url: "https://modestfun.com:8080/notReadClear?_id=" + str
+            url: fileIp.defaultIp +"/notReadClear?_id=" + str
         })
     }
     removeComment = (_id) => {
         $.ajax({
-            url: "https://modestfun.com:8080/removeComment?_id=" + _id
+            url: fileIp.defaultIp +"/removeComment?_id=" + _id
         }).then(res => {
             success()
             var str = window.location.pathname.split("/")[3]
             $.ajax({
-                url: "https://modestfun.com:8080/remarkCount?_id=" + str
+                url: fileIp.defaultIp +"/remarkCount?_id=" + str
             })
             window.location.reload(true)
         })

@@ -3,37 +3,33 @@ import { Helmet } from 'react-helmet';
 import NavM from "../homepage/js/nav";
 import $ from "jquery"
 import "./FriendLink.css"
+import { fileIp } from "../../routes/index"
 export default class FriendLink extends Component {
     state = {
         near: [],
         far: [],
-        big: [],
-        mine: []
+        big: []
     }
-    componentWillMount() {
+    componentDidMount() {
         $.ajax({
-            url: "https://www.modestfun.com:8080/getFriend"
+            url: fileIp.defaultIp + "/getFriend"
         }).then(res => {
             var near = []
             var far = []
             var big = []
-            var mine = []
             res.forEach(item => {
                 if (item.friendType == '身边的朋友') {
                     near.push(item)
                 } else if (item.friendType == '远方的伙伴') {
                     far.push(item)
-                } else if (item.friendType == '私人项目') {
-                    mine.push(item)
                 } else if (item.friendType == '大佬的博客') {
                     big.push(item)
                 }
             })
             this.setState({
-                near: near,
-                far: far,
-                big: big,
-                mine: mine
+                near,
+                far,
+                big,
             })
         })
     }
@@ -44,8 +40,8 @@ export default class FriendLink extends Component {
             <div style={{ overflow: "hidden" }}>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>友链 | Modest的个人博客</title>
-                    <link rel="icon" href="https://modestfun.com:8080/img/?name=logo" />
+                    <title>友链 | ModestFun的个人博客</title>
+                    <link rel="icon" href={fileIp.defaultIp + "/img/?name=logo"} />
                 </Helmet>
                 <NavM></NavM>
                 <div className="fixcontainer"></div>
@@ -64,7 +60,7 @@ export default class FriendLink extends Component {
                         </h4>
                         <div className="rule">
                             <h4>交换友链可在留言板留言.同时请将本站加入友链</h4>
-                            <h4>名称：ModestFun</h4>
+                            <h4>名称：ModestFun的个人博客</h4>
                             <h4>网址：https://www.modestfun.com/</h4>
                             <h4>图标：https://www.modestfun.com:8080/img/?name=logo</h4>
                             <h4>描述：一个四非大学的预备钱端攻城狮🦁</h4>
@@ -72,21 +68,7 @@ export default class FriendLink extends Component {
                         </div>
                     </div>
                     <div className="friendWall">
-                        <h2 className="ruleTitle">0.私人项目</h2>
-                        <div className="friendItem">
-                            {
-                                mine.map((v, k) => (
-                                    <div key={k} className="itemWall">
-                                        <a target="_blank" href={v.website}>
-                                            <img src={v.logoUrl} alt="" />
-                                            <h2>{v.name}</h2>
-                                            <p>{v.describe}</p>
-                                        </a>
-                                    </div>
-                                ))
-                            }
-                        </div>
-                        <h2 className="ruleTitle">1.身边的朋友</h2>
+                        <h2 className="ruleTitle">身边的朋友</h2>
                         <div className="friendItem">
                             {
                                 near.map((v, k) => (
@@ -101,7 +83,7 @@ export default class FriendLink extends Component {
                             }
                         </div>
 
-                        <h2 className="ruleTitle">2.远方的伙伴</h2>
+                        <h2 className="ruleTitle">远方的伙伴</h2>
                         <div className="friendItem">
                             {
                                 far.map((v, k) => (
@@ -116,7 +98,7 @@ export default class FriendLink extends Component {
                             }
                         </div>
 
-                        <h2 className="ruleTitle">3.云端的大佬</h2>
+                        <h2 className="ruleTitle">云端的大佬</h2>
                         <div className="friendItem">
                             {
                                 big.map((v, k) => (

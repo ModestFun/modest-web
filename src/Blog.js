@@ -13,7 +13,7 @@ function Blog() {
     <BlogFrames>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Blog | Modest的个人博客</title>
+        <title>Blog | ModestFun的个人博客</title>
         <link rel="icon" href="https://modestfun.com:8080/img/?name=logo" />
       </Helmet>
       <Switch>

@@ -8,6 +8,7 @@ import { Form, Input, Button } from 'antd';
 import './css/admin.css'
 import logo from '../admin/img/logo.png'
 import { message } from 'antd';
+import { fileIp } from "../../routes/index"
 const success = () => {
     message.success('欢迎博主回到快乐老家！');
 };
@@ -29,8 +30,8 @@ export default class Login extends Component {
             <div className="container LoginMain">
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>Login | Modest的个人博客</title>
-                    <link rel="icon" href="http://modest.fun:8080/img/?name=logo" />
+                    <title>Login | ModestFun的个人博客</title>
+                    <link rel="icon" href={fileIp.defaultIp + "/img/?name=logo"} />
                 </Helmet>
                 <div className="login">
                     <Form
