@@ -7,14 +7,14 @@ import {
 import { adminRoutes } from "./routes"
 import Frame from "./JSComponent/admin/frames/index"
 import { Helmet } from 'react-helmet';
-import { fileIp} from "./routes/index"
-function App() {
+import { fileIp } from "./routes/index"
+function Admin() {
   return (
     <Frame>
       <Helmet>
         <meta charSet="utf-8" />
         <title>Admin | ModestFun的个人博客</title>
-        <link rel="icon" href={ fileIp.defaultIp +"/img/?name=logo"} />
+        <link rel="icon" href={fileIp.defaultIp + "/img/?name=logo"} />
       </Helmet>
       <Switch>
         {
@@ -37,4 +37,4 @@ function App() {
 }
 
 
-export default App;
+export default Admin;

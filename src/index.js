@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import {
   Route,
@@ -6,11 +6,10 @@ import {
   BrowserRouter as Router,
   Redirect
 } from 'react-router-dom'
-import App from './App'
+import Admin from './Admin'
 import Blog from './Blog'
 import { mainRoutes } from './routes'
 import * as serviceWorker from './serviceWorker';
-import { Spin } from 'antd';
 class Modest extends Component {
   state = {
     spinning: true
@@ -23,26 +22,27 @@ class Modest extends Component {
     }, 600)
   }
   render() {
-    const { spinning } = this.state
     return (
-      <Spin spinning={spinning}>
+      <div>
         <Router>
-          <Switch>
-            {/* 所有Admin的页面都走App这个组件 */}
-            <Route
-              path="/admin"
-              render={routeProps => <App {...routeProps}></App>}>
-            </Route><Route
-              path="/blog"
-              render={routeProps => <Blog {...routeProps}></Blog>}>
-            </Route>
-            {
-              mainRoutes.map(route => {
-                return <Route key={route.path} {...route} />
-              })
-            }
-            <Redirect to="/404"></Redirect>
-          </Switch>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Switch>
+              {/* 所有Admin的页面都走App这个组件 */}
+              <Route
+                path="/admin"
+                render={routeProps => <Admin {...routeProps}></Admin>}>
+              </Route><Route
+                path="/blog"
+                render={routeProps => <Blog {...routeProps}></Blog>}>
+              </Route>
+              {
+                mainRoutes.map(route => {
+                  return <Route key={route.path} {...route} />
+                })
+              }
+              <Redirect to="/404"></Redirect>
+            </Switch>
+          </Suspense>
         </Router>
         <footer style={{
           width: "100%",
@@ -67,7 +67,7 @@ class Modest extends Component {
             </a>
           </h5>
         </footer>
-      </Spin>
+      </div>
     )
   }
 }

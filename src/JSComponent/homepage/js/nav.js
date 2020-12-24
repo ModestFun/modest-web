@@ -60,11 +60,6 @@ export default class NavM extends Component {
                 isShow: false,
                 href: "/friendLink"
             },
-            // {
-            //     name: "归档",
-            //     isShow: false,
-            //     href: "/friendLink"
-            // },
             {
                 name: "关于",
                 isShow: false,
