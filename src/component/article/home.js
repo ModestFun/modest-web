@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'antd';
 import "antd/dist/antd.css";
-// import "./css/homepage.css";
+import "../common/common.css";
 import { Helmet } from 'react-helmet';
 import { BackTop } from 'antd';
-import Nav from "./js/nav.js";
-import AppContent from "./js/AppContent";
-import Catalog from "./js/Catalog"
+import Nav from "../common/nav";
+import AppContent from "./AppContent";
+import Catalog from "./Catalog"
 import { fileIp } from "../../routes/index"
-export default class HomePage extends Component {
+export default class Home extends Component {
     state = {
         tagName: ""
     }
@@ -18,19 +18,14 @@ export default class HomePage extends Component {
                 window.location.pathname.split("/")[2] : 'all'
         })
     }
-    componentDidUpdate() {
-        this.setState({
-            tagName: window.location.pathname.split("/")[2] ?
-                window.location.pathname.split("/")[2] : 'all'
-        })
-    }
     shouldComponentUpdate(nextProps, nextState) {
-        return nextState.tagName !== this.state.tagName
+        return nextState.tagName !== this.state.tagName;
+    }
+    callback(tagName) {
+        this.setState({ tagName })
     }
     render() {
         const { tagName } = this.state
-
-        console.log(this.state.tagName)
         return (
             <div className="appMain">
                 <Helmet>
@@ -47,7 +42,9 @@ export default class HomePage extends Component {
                             <AppContent tagName={tagName}></AppContent>
                         </Col>
                         <Col style={{ backgroundColor: "rgba(255,255,255,0)" }} offset={1} xl={6} lg={7} md={0} xs={0} sm={0}>
-                            <Catalog></Catalog>
+                            <Catalog
+                                callback={(tagName) => this.callback(tagName)}
+                            ></Catalog>
                         </Col>
                     </Row>
                     <BackTop />

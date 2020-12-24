@@ -4,14 +4,14 @@ import "antd/dist/antd.css";
 import "../css/appcontent.css";
 import axios from 'axios'
 import $ from "jquery"
-import {fileIp} from "../../../routes/index"
+import { fileIp } from "../../../routes/index"
 import LazyLoad from 'react-lazyload';
 class Sectioon extends Component {
 
     render() {
         var { v } = this.props
         var date = v.date.split(".")
-        var imgUrl = fileIp.defaultIp +"/articleImg/?name=" + v.titleImg
+        var imgUrl = fileIp.defaultIp + "/articleImg/?name=" + v.titleImg
         var aHref = "/blog/" + v._id
         return (
             <LazyLoad height={200}>
@@ -79,22 +79,22 @@ export default class AppContent extends Component {
     state = {
         contentList: []
     }
-    componentWillMount() {
-        var modestAxios = axios.create({
-            baseURL:  fileIp.defaultIp
-        })
-        modestAxios.get("/getArticleList")
-            .then(res => {
-                return res.data
-            }).then(res => {
-                this.setState({
-                    contentList: res
-                })
-            }
-            ).catch(err => {
-                console.log(err)
-            })
-    }
+    // componentWillMount() {
+    //     var modestAxios = axios.create({
+    //         baseURL:  fileIp.defaultIp
+    //     })
+    //     modestAxios.get("/getArticleList")
+    //         .then(res => {
+    //             return res.data
+    //         }).then(res => {
+    //             this.setState({
+    //                 contentList: res
+    //             })
+    //         }
+    //         ).catch(err => {
+    //             console.log(err)
+    //         })
+    // }
     componentDidMount() {
         $(".waifu")[0].style.display = "block"
     }
@@ -107,7 +107,7 @@ export default class AppContent extends Component {
                         <Sectioon v={v} key={k}></Sectioon>
                     ))
                 }
-                 <div className="appfooter">
+                <div className="appfooter">
                     已经到底啦！如果你有什么好的想法，欢迎<a onClick={(e) => {
                         e.preventDefault()
                         window.location.href = fileIp.onLineIp + "/interact"

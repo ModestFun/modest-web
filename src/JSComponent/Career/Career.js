@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import NavM from "../homepage/js/nav";
+// import NavM from "../homepage/js/nav";
 import "./career.css"
 import { Helmet } from 'react-helmet';
 import { Row, Col } from 'antd';

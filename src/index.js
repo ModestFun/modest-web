@@ -44,7 +44,7 @@ class Modest extends Component {
             </Switch>
           </Suspense>
         </Router>
-        <footer style={{
+        {/* <footer style={{
           width: "100%",
           boxSizing: "border-box",
           backgroundColor: "#333",
@@ -66,7 +66,7 @@ class Modest extends Component {
             <a href="http://www.beian.miit.gov.cn/publish/query/indexFirst.action?spm=a2c4g.11186623.2.12.4b497638zyCuzK&file=indexFirst.action"> 黑ICP备18005796号-3
             </a>
           </h5>
-        </footer>
+        </footer> */}
       </div>
     )
   }

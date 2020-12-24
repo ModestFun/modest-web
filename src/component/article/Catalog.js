@@ -1,40 +1,47 @@
 import React, { Component } from 'react'
-import "../css/catalog.css"
+import "../common/common.css"
 import { List } from 'antd'
 import $ from 'jquery'
-import { fileIp } from "../../../routes/index"
+import { fileIp } from "../../routes/index"
 import { Link } from "react-router-dom"
 export default class Catalog extends Component {
     state = {
         isHome: false,
+        tagName: window.location.pathname.split("/")[2] ?
+            window.location.pathname.split("/")[2] : 'all',
         data: [
             {
                 num: 0,
                 href: "/",
+                name: 'all',
                 tagName: "全部文章",
-                isShow: true
+                isShow: false
             },
             {
                 num: 1,
                 href: "/tags/studyNotes",
+                name: 'studyNotes',
                 tagName: "学习笔记",
                 isShow: false
             },
             {
                 num: 2,
                 href: "/tags/varia",
+                name: 'varia',
                 tagName: "杂文集",
                 isShow: false
             },
             {
                 num: 3,
                 href: "/tags/techniqueSharing",
+                name: 'techniqueSharing',
                 tagName: "技术分享",
                 isShow: false
             },
             {
                 num: 4,
                 href: "/tags/otherThings",
+                name: 'otherThings',
                 tagName: "其他",
                 isShow: false
             }
@@ -46,10 +53,9 @@ export default class Catalog extends Component {
         //     isHome: window.location.pathname === "/" || window.location.pathname.split("/")[1] === "tags"
         // })
         // console.log(this.state.isHome)
-        var tagName = window.location.pathname.split("/")[2]
         const data = this.state.data
         data.forEach(i => i.isShow = false);
-        data.forEach(item => item.tagName == tagName ? data[item.num].isShow = true : data[0].isShow = true);
+        data.forEach(item => item.name === this.state.tagName ? data[item.num].isShow = true : null);
         this.setState({ data });
         this.catalogInit()
     }
@@ -89,6 +95,7 @@ export default class Catalog extends Component {
         data.forEach(item => item.isShow = false)
         data[k].isShow = true
         this.setState({ data })
+        this.props.callback(data[k].name)
     }
     scrollToAnchor = (anchorName) => {
         if (anchorName) {
@@ -118,8 +125,14 @@ export default class Catalog extends Component {
                 >
                     {
                         data.map((v, k) => (
-                            <List.Item onClick={() => this.tagClick(k)} key={v.num} className={v.isShow ? "tagsItem tagsItem_show" : "tagsItem"}>
-                                <Link to={v.href} style={{ color: '#333', display: 'block', width: '100%', height: '100%' }} >{v.tagName}</Link>
+                            <List.Item
+                                onClick={() => this.tagClick(k)} key={v.num}
+                                className={v.isShow ? "tagsItem tagsItem_show" : "tagsItem"}
+                                style={{
+                                    padding: "0px"
+                                }}
+                            >
+                                <Link to={v.href} style={{ color: '#333', padding: "15px 25px", display: 'block', width: '100%', height: '100%' }} >{v.tagName}</Link>
                                 <div className={v.isShow ? "tagsLine tagsLine_show" : "tagsLine"}></div>
                             </List.Item>
                         ))

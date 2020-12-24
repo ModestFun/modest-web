@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'antd';
 import "antd/dist/antd.css";
-import "../css/appcontent.css";
+import "../common/common.css";
 import $ from "jquery"
-import { fileIp } from "../../../routes/index"
+import { fileIp } from "../../routes/index"
 import LazyLoad from 'react-lazyload';
 class Sectioon extends Component {
 
@@ -107,42 +107,58 @@ export default class AppContent extends Component {
     //         })
     // }
     componentDidMount() {
-        this.tagHandle()
-        console.log(this.props)
+        const _this = this;
+        $.ajax(`${fileIp.defaultIp}/getArticleList`)
+            .then(res => {
+                _this.setState({ contentList: res });
+                _this.showSectionOfTag()
+            }).catch(e => console.log(e))
     }
+    componentDidUpdate() {
+        const _this = this;
+        $.ajax(`${fileIp.defaultIp}/getArticleList`)
+            .then(res => {
+                _this.setState({ contentList: res });
+                _this.showSectionOfTag()
+            }).catch(e => console.log(e))
+    }
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextProps.tagName !== this.props.tagName;
+    }
+    showSectionOfTag() {
+        const { tagName } = this.props
+        console.log(tagName)
+        if (tagName !== 'all') {
+            const contentList = this.state.contentList.reduce((pre, cur) => cur.contentTag === this.tagHandle() ? pre.concat(cur) : pre, []);
+            console.log(contentList)
+            this.setState({ contentList });
+        }
+    }
+    // 改变contentList来源，父传子
     tagHandle = () => {
         const { tagName } = this.props
-        console.log(this.props)
-        if (tagName == "personalDiary") {
-            return "个人日记"
-        }
-        else if (tagName == "studyNotes") {
-            return "学习笔记"
-        }
-        else if (tagName == "varia") {
-            return "杂文集"
-        }
-        else if (tagName == "techniqueSharing") {
-            return "技术分享"
-        }
-        else if (tagName == "otherThings") {
-            return "其他"
+        switch (tagName) {
+            case 'personalDiary': return '个人日记';
+            case 'studyNotes': return '学习笔记';
+            case 'varia': return '杂文集';
+            case 'techniqueSharing': return '技术分享';
+            case 'otherThings': return '其他';
         }
     }
-    componentDidMount() {
-        $(".waifu")[0].style.display = "none"
-    }
+    // componentDidMount() {
+    //     $(".waifu")[0].style.display = "none"
+    // }
     render() {
         const { contentList } = this.state
+        console.log(contentList)
         return (
 
             <div className="appcontent">
-                {/* {
+                {
                     contentList.map((v, k) => (
-                        v.contentTag == contentTag ?
-                            <Sectioon v={v} key={k}></Sectioon> : ""
+                        <Sectioon v={v} key={k}></Sectioon>
                     ))
-                } */}
+                }
                 <div className="appfooter">
                     已经到底啦！如果你有什么好的想法，欢迎<a onClick={(e) => {
                         e.preventDefault()
