@@ -6,7 +6,7 @@ import { fileIp } from "../../../routes/index"
 
 export default class Catalog extends Component {
     state = {
-        ishome: false,
+        isHome: false,
         data: [
             {
                 num: 1,
@@ -40,58 +40,27 @@ export default class Catalog extends Component {
         ],
         hotArticle: []
     }
-
-    componentWillMount() {
-        if (window.location.pathname === "/" || window.location.pathname.split("/")[1] === "tags") {
-            this.setState({
-                ishome: true
-            })
-        } else {
-            this.setState({
-                ishome: false
-            })
-        }
-        $.ajax({
-            url: fileIp.defaultIp + "/getArticleList"
-        }).then(res => {
-            const hotArticle = []
-            res.sort((a, b) => b.browseNum - a.browseNum)
-            for (var k = 0; k < 5; k++) {
-                if (res[k]) {
-                    hotArticle[k] = res[k]
-                }
-            }
-            this.setState({
-                hotArticle
-            })
-        })
-    }
     componentDidMount() {
-        var thediv = (timespan) => {
-            var result = Math.floor((new Date() - new Date(timespan)) / 3600000 / 24);
-            var result2 = Math.floor((new Date() - new Date(timespan)) / 1000 / 60 / 60 / 60);
-            var result3 = Math.floor((new Date() - new Date(timespan)) / 1000 / 60 % 60);
-            var result4 = Math.floor((new Date() - new Date(timespan)) / 1000 % 60);
-            document.getElementsByClassName("travelTime")[0].innerHTML = result + "天" + result2 + "小时" + result3 + "分钟" + result4 + "秒";
-        }
-        window.setInterval(function () {
-            thediv('2020/3/22')
-        }, 0);
-        var tagName = window.location.pathname.split("/")[2]
-        var newData = []
-        console.log(this.state.data)
-        newData = this.state.data
-        newData.forEach(item => {
-            item.isShow = false
-        })
-        newData.forEach(item => {
-            if (item.name == tagName) {
-                newData[item.num - 1].isShow = true
-            }
-        })
         this.setState({
-            data: newData
+            isHome: window.location.pathname === "/" || window.location.pathname.split("/")[1] === "tags"
         })
+        var tagName = window.location.pathname.split("/")[2]
+        const data = this.state.data
+        data.forEach(i => i.isShow = false);
+        data.forEach(item => item.name == tagName ? data[item.num - 1].isShow = true : null);
+        this.setState({ data });
+        this.catalogInit()
+    }
+    catalogInit() {
+        const travelTime = (timeStamp) => {
+            var result = parseInt((Date.now() - timeStamp) / 3600000 / 24);
+            var result2 = Math.floor((Date.now() - timeStamp) % (24 * 3600000) / 3600 / 1000);
+            var result3 = Math.floor((Date.now() - timeStamp) / 1000 / 60 % 60);
+            document.getElementsByClassName("travelTime")[0].innerHTML = result + "天" + result2 + "小时" + result3 + "分钟";
+        }
+        this.timeInterval = setInterval(function () {
+            travelTime(Date.parse('2020/3/22'))
+        }, 0);
         window.onload = function () {
             var stopHere = document.getElementById("stopHere"),
                 H = 0,
@@ -109,6 +78,9 @@ export default class Catalog extends Component {
                 }
             }
         }
+    }
+    componentWillUnmount() {
+        window.clearInterval(this.timeInterval);
     }
     tagClick = (k) => {
         var newData = []
@@ -137,12 +109,15 @@ export default class Catalog extends Component {
         }
     }
     render() {
-        const { data, hotArticle, ishome } = this.state
+        const { data, hotArticle, isHome } = this.state
         return (
             <div id="stopHere" className="catalog">
                 <div className="catalogTop">
-                    <h3>压力面前保持优雅</h3>
-                    <h3 style={{ marginBottom: "0px" }}><span><svg t="1586954364898" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3063" width="16" height="16"><path d="M487.808 200c172.032 0 312 139.968 312 312s-139.968 312-312 312-312-139.968-312-312 139.904-312 312-312m0-104c-229.76 0-416 186.24-416 416 0 229.824 186.24 416 416 416 229.824 0 416-186.176 416-416 0-229.76-186.24-416-416-416m104 572.032c-13.312 0-26.624-5.12-36.8-15.168L451.072 548.8c-9.408-9.28-15.232-22.272-15.232-36.608V304c0-28.8 23.232-52.032 52.032-52.032S539.904 275.2 539.904 304v186.496l88.768 88.704c20.288 20.288 20.288 53.248 0 73.536-10.24 10.176-23.552 15.296-36.864 15.296" p-id="3064" fill="#ffffff"></path></svg></span><span className="travelTime"></span></h3>
+                    <h3>搜索框</h3>
+                    <h3 style={{ marginBottom: "0px" }}>
+                        本站已运行：
+                        <span className="travelTime"></span>
+                    </h3>
                 </div>
                 <List
                     className="tagsLog"
@@ -168,7 +143,7 @@ export default class Catalog extends Component {
                         ))
                     }
                 </div>
-                <div id="stopHere2" style={ishome ? { display: "none" } : { display: "block" }} className="toolLog">
+                <div id="stopHere2" style={isHome ? { display: "none" } : { display: "block" }} className="toolLog">
 
                     <h2 style={{ textAlign: "center", color: "#ff6700", fontWeight: "600" }}>工具栏</h2>
                     <div className="toolItemA">

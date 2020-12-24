@@ -35,7 +35,7 @@ const menu = (
         </Menu.Item>
     </Menu>
 );
-export default class NavM extends Component {
+export default class Nav extends Component {
     state = {
         visible: false,
         placement: 'left',
@@ -85,19 +85,15 @@ export default class NavM extends Component {
             placement: e.target.value,
         });
     };
-    componentWillMount() {
-        var page = window.location.pathname
-        var list = this.state.pages
-        list.forEach(item => {
-            if (page == item.href) {
-                item.isShow = true
-            }
-        })
-        if (page.split("/")[1] == "blog") {
-            list[0].isShow = true
+    componentDidMount() {
+        const pathname = window.location.pathname;
+        const pages = this.state.pages
+        pages.forEach(item => pathname === item.href ? item.isShow = true : null)
+        if (pathname.split('/')[1] === 'blog') {
+            pages[0].isShow = true
         }
         this.setState({
-            pages: list
+            pages
         })
     }
     render() {
@@ -133,7 +129,7 @@ export default class NavM extends Component {
                             </List>
                         </Drawer>
                     </Col>
-                    <Col className="smLogo" style={{ boxSizing: "border-box", backgroundColor: " background-color: rgba(255, 255, 255,0.6);", height: "70px" }} xl={5} lg={5} md={5} xs={14} sm={14}>
+                    <Col className="smLogo" style={{ boxSizing: "border-box", backgroundColor: " background-color: rgba(255, 255, 255,0.6);", height: "50px" }} xl={5} lg={5} md={5} xs={14} sm={14}>
                         <div onClick={() => { window.location.href = "/admin" }} className="navname">
                             <img className="navlogo" src={logo} />
                             <h3 className="navMF">ModestFun</h3>
@@ -149,7 +145,7 @@ export default class NavM extends Component {
                             {
                                 pages.map((v, k) => (
                                     <li className={v.isShow ? "navitem navitem_show" : "navitem"}>
-                                        <a href={v.href}>{v.name}</a>
+                                        <Link to={v.href}>{v.name}</Link>
                                         <span className={v.isShow ? "line line_show" : "line"}></span>
                                     </li>
                                 ))

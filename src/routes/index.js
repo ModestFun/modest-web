@@ -44,11 +44,11 @@ export const mainRoutes = [
         component: NotFound,
         exact: true
     },
-    {
-        path: "/login",
-        component: Login,
-        exact: true
-    },
+    // {
+    //     path: "/login",
+    //     component: Login,
+    //     exact: true
+    // },
     {
         path: "/tags/:name",
         component: HomePage,
@@ -139,14 +139,14 @@ export const adminRoutes = [
         isShow: true,
         types: "FriendLink",
         title: "添加友链"
-    },{
+    }, {
         path: "/admin/friendHandle",
         component: FriendHandle,
         exact: true,
         isShow: true,
         types: "FriendLink",
         title: "管理友链"
-    },{
+    }, {
         path: "/admin/updateFriend/:id",
         component: UpdataFriend,
         exact: true,

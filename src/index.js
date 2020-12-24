@@ -7,7 +7,7 @@ import {
   Redirect
 } from 'react-router-dom'
 import Admin from './Admin'
-import Blog from './Blog'
+import App from './App'
 import { mainRoutes } from './routes'
 import * as serviceWorker from './serviceWorker';
 class Modest extends Component {
@@ -33,7 +33,7 @@ class Modest extends Component {
                 render={routeProps => <Admin {...routeProps}></Admin>}>
               </Route><Route
                 path="/blog"
-                render={routeProps => <Blog {...routeProps}></Blog>}>
+                render={routeProps => <App {...routeProps}></App>}>
               </Route>
               {
                 mainRoutes.map(route => {

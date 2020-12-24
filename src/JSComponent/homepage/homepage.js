@@ -4,7 +4,6 @@ import "antd/dist/antd.css";
 import "./css/homepage.css";
 import { Helmet } from 'react-helmet';
 import { BackTop } from 'antd';
-// -------自己引入得组件---------
 import NavM from "./js/nav.js";
 import AppContent from "./js/appcontent";
 import Catalog from "./js/Catalog"

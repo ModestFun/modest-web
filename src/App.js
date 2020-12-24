@@ -7,9 +7,9 @@ import {
 import { blogRoutes } from "./routes"
 import { Helmet } from 'react-helmet';
 const BlogFrames = React.lazy(() => import('./JSComponent/blog/BlogFrames'));
-function Blog() {
+function App() {
   return (
-    <Suspense>
+    <Suspense fallback={<div>Loading...</div>}>
       <BlogFrames>
         <Helmet>
           <meta charSet="utf-8" />
@@ -38,4 +38,4 @@ function Blog() {
 }
 
 
-export default Blog;
+export default App;
