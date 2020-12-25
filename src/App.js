@@ -30,7 +30,8 @@ function App() {
               )
             })
           }
-          <Redirect to="/404"></Redirect>
+
+          {/* <Redirect to="/404"></Redirect> */}
         </Switch>
       </BlogFrames>
     </Suspense>

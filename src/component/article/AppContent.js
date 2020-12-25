@@ -77,85 +77,19 @@ class Sectioon extends Component {
 }
 
 export default class AppContent extends Component {
-    state = {
-        contentList: []
-    }
-    // componentWillMount() {
-    //     var modestAxios = axios.create({
-    //         baseURL: fileIp.defaultIp
-    //     })
-    //     modestAxios.get("/getArticleList")
-    //         .then(res => {
-    //             return res.data
-    //         }).then(res => {
-    //             res.forEach(item => {
-    //                 var str = item.titleText
-    //                 for (var j = 0; j < str.length; j++) {
-    //                     str = str.replace("&lt;br&gt;", "<br>")
-    //                     str = str.replace("\n", "<br>")
-    //                     str = str.replace("\r", "")
-    //                 }
-    //                 str = str.replace("<br>", "")
-    //                 item.titleText = str
-    //             })
-    //             this.setState({
-    //                 contentList: res
-    //             })
-    //         }
-    //         ).catch(err => {
-    //             console.log(err)
-    //         })
-    // }
-    componentDidMount() {
-        const _this = this;
-        $.ajax(`${fileIp.defaultIp}/getArticleList`)
-            .then(res => {
-                _this.setState({ contentList: res });
-                _this.showSectionOfTag()
-            }).catch(e => console.log(e))
-    }
-    componentDidUpdate() {
-        const _this = this;
-        $.ajax(`${fileIp.defaultIp}/getArticleList`)
-            .then(res => {
-                _this.setState({ contentList: res });
-                _this.showSectionOfTag()
-            }).catch(e => console.log(e))
-    }
     shouldComponentUpdate(nextProps, nextState) {
-        return nextProps.tagName !== this.props.tagName;
-    }
-    showSectionOfTag() {
-        const { tagName } = this.props
-        console.log(tagName)
-        if (tagName !== 'all') {
-            const contentList = this.state.contentList.reduce((pre, cur) => cur.contentTag === this.tagHandle() ? pre.concat(cur) : pre, []);
-            console.log(contentList)
-            this.setState({ contentList });
-        }
-    }
-    // 改变contentList来源，父传子
-    tagHandle = () => {
-        const { tagName } = this.props
-        switch (tagName) {
-            case 'personalDiary': return '个人日记';
-            case 'studyNotes': return '学习笔记';
-            case 'varia': return '杂文集';
-            case 'techniqueSharing': return '技术分享';
-            case 'otherThings': return '其他';
-        }
+        return nextProps.articleList !== this.props.articleList;
     }
     // componentDidMount() {
     //     $(".waifu")[0].style.display = "none"
     // }
     render() {
-        const { contentList } = this.state
-        console.log(contentList)
+        const { articleList } = this.props
         return (
 
             <div className="appcontent">
                 {
-                    contentList.map((v, k) => (
+                    articleList.map((v, k) => (
                         <Sectioon v={v} key={k}></Sectioon>
                     ))
                 }

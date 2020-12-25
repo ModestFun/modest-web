@@ -8,24 +8,34 @@ import Nav from "../common/nav";
 import AppContent from "./AppContent";
 import Catalog from "./Catalog"
 import { fileIp } from "../../routes/index"
+import $ from "jquery"
 export default class Home extends Component {
     state = {
-        tagName: ""
+        tagName: "",
+        articleList: [],
     }
     componentDidMount() {
+        const tagName = window.location.pathname.split("/")[2];
         this.setState({
-            tagName: window.location.pathname.split("/")[2] ?
-                window.location.pathname.split("/")[2] : 'all'
+            tagName
         })
+        this.getArticleList(tagName);
     }
     shouldComponentUpdate(nextProps, nextState) {
-        return nextState.tagName !== this.state.tagName;
+        return nextState.tagName !== this.state.tagName || nextState.articleList !== this.state.articleList;
+    }
+    getArticleList(tagName = '') {
+        $.ajax(`${fileIp.defaultIp}/getArticleList?tagName=${tagName}`)
+            .then(articleList => {
+                this.setState({ articleList })
+            }).catch(e => console.log(e));
     }
     callback(tagName) {
-        this.setState({ tagName })
+        this.setState({ tagName });
+        this.getArticleList(tagName);
     }
     render() {
-        const { tagName } = this.state
+        const { tagName, articleList } = this.state;
         return (
             <div className="appMain">
                 <Helmet>
@@ -37,9 +47,12 @@ export default class Home extends Component {
                 <Nav></Nav>
                 <a href="#" id='screens4'>&nbsp;</a>
                 <div className="container" >
-                    <Row className="Row" style={{ backgroundColor: "rgba(255,255,255,0)", minHeight: "1000px", marginTop: "50px" }}>
+                    <Row className="Row" style={{ backgroundColor: "rgba(255,255,255,0)", minHeight: "1000px", marginTop: "40px" }}>
                         <Col style={{ backgroundColor: "rgba(255,255,255,0)" }} xl={17} lg={16} md={23} xs={23} sm={22}>
-                            <AppContent tagName={tagName}></AppContent>
+                            <AppContent
+                                tagName={tagName}
+                                articleList={articleList}
+                            ></AppContent>
                         </Col>
                         <Col style={{ backgroundColor: "rgba(255,255,255,0)" }} offset={1} xl={6} lg={7} md={0} xs={0} sm={0}>
                             <Catalog

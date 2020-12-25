@@ -43,7 +43,7 @@ export default class Nav extends Component {
             {
                 name: "文章",
                 isShow: false,
-                href: "/"
+                href: "/tags"
             },
             {
                 name: "日记",
@@ -89,7 +89,7 @@ export default class Nav extends Component {
         const pathname = window.location.pathname;
         const pages = this.state.pages
         pages.forEach(item => pathname === item.href ? item.isShow = true : null)
-        if (pathname.split('/')[1] === 'blog') {
+        if (pathname.split('/')[1] === 'blog' || pathname.split('/')[1] === 'tags') {
             pages[0].isShow = true
         }
         this.setState({

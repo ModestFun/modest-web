@@ -10,6 +10,11 @@ import Admin from './Admin'
 import App from './App'
 import { mainRoutes } from './routes'
 import * as serviceWorker from './serviceWorker';
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import todoApp from './reducers/index'
+let store = createStore(todoApp);
+
 class Modest extends Component {
   state = {
     spinning: true
@@ -40,6 +45,9 @@ class Modest extends Component {
                   return <Route key={route.path} {...route} />
                 })
               }
+              <Route exact key='/'>
+                <Redirect to="/tags/all"></Redirect>
+              </Route>
               <Redirect to="/404"></Redirect>
             </Switch>
           </Suspense>
@@ -73,8 +81,9 @@ class Modest extends Component {
 }
 
 ReactDOM.render(
-  <Modest></Modest>
-  ,
+  <Provider store={store}>
+    <Modest></Modest>
+  </Provider>,
   document.getElementById('root')
 );
 

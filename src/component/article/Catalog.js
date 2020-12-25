@@ -12,7 +12,7 @@ export default class Catalog extends Component {
         data: [
             {
                 num: 0,
-                href: "/",
+                href: "/tags/all",
                 name: 'all',
                 tagName: "全部文章",
                 isShow: false
