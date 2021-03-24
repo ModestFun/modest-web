@@ -1,36 +1,35 @@
 import React, { Component } from 'react'
 import "./contentDetail.css"
-import $ from "jquery"
-import { fileIp } from "../../routes/index"
+
 export default class CommentDetail extends Component {
     spanClick = (e) => {
-        $.ajax({
-            url: fileIp.defaultIp +"/getTheComment?_id=" + e
-        }).then(res => {
-            if (res[0].content.substring(0, 18) === `<div class="atSB">`) {
-                res[0].content = res[0].content.split("<br/>")[1]
-            }
-            var div = document.createElement("div")
-            div.className = "atSB"
-            var h3 = document.createElement("h3")
-            if(res[0].uName === "ModestFun528528+++"){
-                res[0].uName = "博主"
-            }
-            h3.innerHTML = "引用 " + res[0].uName + " 的发言："
-            var p = document.createElement("p")
-            var str = res[0].content
-            for (var j = 0; j < str.length; j++) {
-                str = str.replace("&lt;br&gt;", "<br>")
-                str = str.replace("\n", "<br>")
-                str = str.replace("\r", "")
-            }
-            p.innerHTML = str
-            div.appendChild(h3)
-            div.appendChild(p)
-            document.getElementsByClassName("hide")[0].innerHTML = ""
-            document.getElementsByClassName("hide")[0].appendChild(div)
-            this.scrollToAnchor("screens2")
-        })
+        // $.ajax({
+        //     url: fileIp.defaultIp +"/getTheComment?_id=" + e
+        // }).then(res => {
+        //     if (res[0].content.substring(0, 18) === `<div class="atSB">`) {
+        //         res[0].content = res[0].content.split("<br/>")[1]
+        //     }
+        //     var div = document.createElement("div")
+        //     div.className = "atSB"
+        //     var h3 = document.createElement("h3")
+        //     if(res[0].uName === "ModestFun528528+++"){
+        //         res[0].uName = "博主"
+        //     }
+        //     h3.innerHTML = "引用 " + res[0].uName + " 的发言："
+        //     var p = document.createElement("p")
+        //     var str = res[0].content
+        //     for (var j = 0; j < str.length; j++) {
+        //         str = str.replace("&lt;br&gt;", "<br>")
+        //         str = str.replace("\n", "<br>")
+        //         str = str.replace("\r", "")
+        //     }
+        //     p.innerHTML = str
+        //     div.appendChild(h3)
+        //     div.appendChild(p)
+        //     document.getElementsByClassName("hide")[0].innerHTML = ""
+        //     document.getElementsByClassName("hide")[0].appendChild(div)
+        //     this.scrollToAnchor("screens2")
+        // })
     }
     scrollToAnchor = (anchorName) => {
         if (anchorName) {

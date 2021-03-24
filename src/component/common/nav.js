@@ -43,7 +43,7 @@ export default class Nav extends Component {
             {
                 name: "文章",
                 isShow: false,
-                href: "/tags"
+                href: "/"
             },
             {
                 name: "日记",

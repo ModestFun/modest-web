@@ -9,33 +9,37 @@ import Nav from "../common/nav";
 import AppContent from "./AppContent";
 import Catalog from "./Catalog"
 import { fileIp } from "../../routes/index"
-import $ from "jquery"
+import api from '../../api';
+
 export default class Home extends Component {
     state = {
         tagName: "",
         articleList: [],
     }
-    componentDidMount() {
+    componentDidMount () {
         const tagName = window.location.pathname.split("/")[2];
+        console.log(tagName);
         this.setState({
             tagName
         })
         this.getArticleList(tagName);
     }
-    shouldComponentUpdate(nextProps, nextState) {
+    shouldComponentUpdate (nextProps, nextState) {
         return nextState.tagName !== this.state.tagName || nextState.articleList !== this.state.articleList;
     }
-    getArticleList(tagName = '') {
-        $.ajax(`${fileIp.defaultIp}/getArticleList?tagName=${tagName}`)
-            .then(articleList => {
-                this.setState({ articleList })
-            }).catch(e => console.log(e));
+    async getArticleList (tagName) {
+        try {
+            const res = await api.getArticleList(tagName)
+            this.setState({ articleList: res.data })
+        } catch (e) {
+            console.log(e);
+        }
     }
-    callback(tagName) {
+    callback (tagName) {
         this.setState({ tagName });
         this.getArticleList(tagName);
     }
-    render() {
+    render () {
         const { tagName, articleList } = this.state;
         return (
             <div className="appMain">

@@ -4,18 +4,18 @@ import "./contentDetail.css"
 import { Button, PageHeader, message, Input } from 'antd';
 import MarkDown from './Markdown'
 import CommentDetail from "./CommentDetail"
-import $ from "jquery"
+// import $ from "jquery"
 import { fileIp } from "../../routes/index"
 const emailWarning = () => {
     message.warning('检测到您输入的不是QQ邮箱，建议更换成QQ邮箱！');
 };
 const { TextArea } = Input;
-const emailError = () => {
-    message.error('您的邮箱有误，请输入正确的QQ邮箱');
-};
-const success = () => {
-    message.success('评论发表成功！');
-};
+// const emailError = () => {
+//     message.error('您的邮箱有误，请输入正确的QQ邮箱');
+// };
+// const success = () => {
+//     message.success('评论发表成功！');
+// };
 
 const speakError = () => {
     message.error('2分钟之内只能发送一次评论！');
@@ -23,9 +23,9 @@ const speakError = () => {
 // const hideError = () => {
 //     message.error('您还没有引用他人的言论！');
 // };
-const titleError = () => {
-    message.error('留言内容和您的名字不可以为空');
-};
+// const titleError = () => {
+//     message.error('留言内容和您的名字不可以为空');
+// };
 export default class ContentDetail extends Component {
     state = {
         checked: false,
@@ -34,15 +34,15 @@ export default class ContentDetail extends Component {
         canSpeak: true
     }
     componentWillMount() {
-        var str = window.location.pathname.split("/")[2]
-        $.ajax({
-            url:  fileIp.defaultIp +"/getCommentList?_id=" + str
-        }).then(res => {
-            this.setState({
-                commentList: res,
-                num: res.length
-            })
-        }).catch(err => console.log(err))
+        // var str = window.location.pathname.split("/")[2]
+        // $.ajax({
+        //     url:  fileIp.defaultIp +"/getCommentList?_id=" + str
+        // }).then(res => {
+        //     this.setState({
+        //         commentList: res,
+        //         num: res.length
+        //     })
+        // }).catch(err => console.log(err))
     }
     onChange = (e) => {
         this.setState({
@@ -50,87 +50,87 @@ export default class ContentDetail extends Component {
         })
     }
     commentReload = () => {
-        var str = window.location.pathname.split("/")[2]
-        $.ajax({
-            url:  fileIp.defaultIp +"/getCommentList?_id=" + str
-        }).then(res => {
-            this.setState({
-                commentList: res,
-                num: res.length,
-                canSpeak: false
-            })
-            window.setTimeout(() => {
-                this.setState({
-                    canSpeak: true
-                })
-            }, 120000);
+        // var str = window.location.pathname.split("/")[2]
+        // $.ajax({
+        //     url:  fileIp.defaultIp +"/getCommentList?_id=" + str
+        // }).then(res => {
+        //     this.setState({
+        //         commentList: res,
+        //         num: res.length,
+        //         canSpeak: false
+        //     })
+        //     window.setTimeout(() => {
+        //         this.setState({
+        //             canSpeak: true
+        //         })
+        //     }, 120000);
 
-        }).catch(err => console.log(err))
-        $.ajax({
-            url:  fileIp.defaultIp +"/remarkCount?_id=" + str
-        })
-            .then(res => { })
-            .catch(err => { console.log(err) })
+        // }).catch(err => console.log(err))
+        // $.ajax({
+        //     url:  fileIp.defaultIp +"/remarkCount?_id=" + str
+        // })
+        //     .then(res => { })
+        //     .catch(err => { console.log(err) })
     }
     clearBtn = () => {
-        $(".uContent")[0].value = ""
-        $(".uName")[0].value = ""
-        $(".uEmail")[0].value = ""
-        $(".uBlog")[0].value = ""
-        var hide = document.getElementsByClassName("hide")[0]
-        if (hide !== "") {
-            this.clearHide()
-        }
+        // $(".uContent")[0].value = ""
+        // $(".uName")[0].value = ""
+        // $(".uEmail")[0].value = ""
+        // $(".uBlog")[0].value = ""
+        // var hide = document.getElementsByClassName("hide")[0]
+        // if (hide !== "") {
+        //     this.clearHide()
+        // }
     }
     btnClick = () => {
-        var hide = document.getElementsByClassName("hide")[0]
-        var content = ""
-        if (hide.innerHTML !== "") {
-            var atsb = document.getElementsByClassName("atSB")
-            atsb = atsb[atsb.length - 1]
-            content = `<div class="atSB">` + atsb.innerHTML + `</div><br/>`
-        }
-        content += $(".uContent")[0].value
-        var uName = $(".uName")[0].value
-        var uEmail = $(".uEmail")[0].value
-        var uBlog = $(".uBlog")[0].value
-        var topic_id = window.location.pathname.split("/")[2]
-        var date = new Date().getFullYear() + "年" + (new Date().getMonth() + 1) + '月' + new Date().getDate() + '日 ' + new Date().getHours() + ':' + new Date().getMinutes()
-        var formdata = new FormData()
-        if (uEmail.indexOf("@") === -1) {
-            emailError()
-        } else if (uEmail.split("@")[1] !== "qq.com") {
-            emailWarning()
-        } else if (content === "" || uName === "") {
-            titleError()
-        } else {
-            if (uBlog === "") {
-                uBlog = "null"
-            }
-            window.setTimeout(() => {
-                this.clearBtn()
-            }, 300)
-            formdata.append("content", content)
-            formdata.append("uName", uName)
-            formdata.append("uEmail", uEmail)
-            formdata.append("topic_id", topic_id)
-            formdata.append("uBlog", uBlog)
-            formdata.append("date", date)
+        // var hide = document.getElementsByClassName("hide")[0]
+        // var content = ""
+        // if (hide.innerHTML !== "") {
+        //     var atsb = document.getElementsByClassName("atSB")
+        //     atsb = atsb[atsb.length - 1]
+        //     content = `<div class="atSB">` + atsb.innerHTML + `</div><br/>`
+        // }
+        // content += $(".uContent")[0].value
+        // var uName = $(".uName")[0].value
+        // var uEmail = $(".uEmail")[0].value
+        // var uBlog = $(".uBlog")[0].value
+        // var topic_id = window.location.pathname.split("/")[2]
+        // var date = new Date().getFullYear() + "年" + (new Date().getMonth() + 1) + '月' + new Date().getDate() + '日 ' + new Date().getHours() + ':' + new Date().getMinutes()
+        // var formdata = new FormData()
+        // if (uEmail.indexOf("@") === -1) {
+        //     emailError()
+        // } else if (uEmail.split("@")[1] !== "qq.com") {
+        //     emailWarning()
+        // } else if (content === "" || uName === "") {
+        //     titleError()
+        // } else {
+        //     if (uBlog === "") {
+        //         uBlog = "null"
+        //     }
+        //     window.setTimeout(() => {
+        //         this.clearBtn()
+        //     }, 300)
+        //     formdata.append("content", content)
+        //     formdata.append("uName", uName)
+        //     formdata.append("uEmail", uEmail)
+        //     formdata.append("topic_id", topic_id)
+        //     formdata.append("uBlog", uBlog)
+        //     formdata.append("date", date)
 
-            $.ajax({
-                url:  fileIp.defaultIp +"/addComment",
-                data: formdata,
-                type: 'POST',
-                processData: false,//必须
-                contentType: false,//必须
-                success: function () {
-                    success()
-                }
-            })
-            this.commentReload()
-            // this.notReadCount(topic_id)
-            this.scrollToAnchor('screens1')
-        }
+        //     $.ajax({
+        //         url:  fileIp.defaultIp +"/addComment",
+        //         data: formdata,
+        //         type: 'POST',
+        //         processData: false,//必须
+        //         contentType: false,//必须
+        //         success: function () {
+        //             success()
+        //         }
+        //     })
+        //     this.commentReload()
+        //     // this.notReadCount(topic_id)
+        //     this.scrollToAnchor('screens1')
+        // }
     }
     scrollToAnchor = (anchorName) => {
         if (anchorName) {
@@ -151,19 +151,19 @@ export default class ContentDetail extends Component {
         }
     }
     componentDidMount() {
-        $(".waifu")[0].style.display = "none"
-        window.setTimeout(() => {
-            var p = $("blockquote p")
-            for (var i = 0; i < p.length; i++) {
-                var str = p[i].innerHTML
-                for (var j = 0; j < str.length; j++) {
-                    str = str.replace("&lt;br&gt;", "<br>")
-                    str = str.replace("\n", "<br>")
-                    str = str.replace("\r", "")
-                }
-                p[i].innerHTML = str
-            }
-        }, 500)
+        // $(".waifu")[0].style.display = "none"
+        // window.setTimeout(() => {
+        //     var p = $("blockquote p")
+        //     for (var i = 0; i < p.length; i++) {
+        //         var str = p[i].innerHTML
+        //         for (var j = 0; j < str.length; j++) {
+        //             str = str.replace("&lt;br&gt;", "<br>")
+        //             str = str.replace("\n", "<br>")
+        //             str = str.replace("\r", "")
+        //         }
+        //         p[i].innerHTML = str
+        //     }
+        // }, 500)
     }
     isQQEmail = (email) => {
         if (email.indexOf("@") !== -1) {

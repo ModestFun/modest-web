@@ -1,7 +1,7 @@
 /* eslint-disable eqeqeq */
 import React, { Component } from 'react'
-import $ from 'jquery'
-import { fileIp } from "../../routes/index"
+// import $ from 'jquery'
+// import { fileIp } from "../../routes/index"
 export default class Catalog extends Component {
     state = {
         ishome: false,
@@ -20,45 +20,45 @@ export default class Catalog extends Component {
                 ishome: false
             })
         }
-        const hotArticle = Array(5)
-        $.ajax({
-            url: fileIp.defaultIp + "/getArticleList"
-        }).then(res => {
-            for (var i = 0; i < res.length; i++) {
-                for (var j = i; j < res.length; j++) {
-                    if (res[i].browseNum < res[j].browseNum) {
-                        var max = res[j]
-                        res[j] = res[i]
-                        res[i] = max
-                    }
-                }
-            }
-            var yuliu = {
-                headTitle: "这里还是空的"
-            }
-            for (var k = 0; k < 5; k++) {
-                if (res[k] == undefined) {
-                    res[k] = yuliu
-                }
-                hotArticle[k] = res[k]
-            }
-            this.setState({
-                hotArticle: hotArticle
-            })
-            var id = window.location.pathname.split("/")[2]
-            $.ajax({
-                url: fileIp.defaultIp + "/getArticle?_id=" + id
-            }).then(res => {
-                $.ajax({
-                    url: fileIp.defaultIp + "/articleMd?name=" + res[0].MdUrl
-                }).then(res2 => {
-                    this.setState({
-                        markdown: res2
-                    })
-                })
-            })
+        // const hotArticle = Array(5)
+        // $.ajax({
+        //     url: fileIp.defaultIp + "/getArticleList"
+        // }).then(res => {
+        //     for (var i = 0; i < res.length; i++) {
+        //         for (var j = i; j < res.length; j++) {
+        //             if (res[i].browseNum < res[j].browseNum) {
+        //                 var max = res[j]
+        //                 res[j] = res[i]
+        //                 res[i] = max
+        //             }
+        //         }
+        //     }
+        //     var yuliu = {
+        //         headTitle: "这里还是空的"
+        //     }
+        //     for (var k = 0; k < 5; k++) {
+        //         if (res[k] == undefined) {
+        //             res[k] = yuliu
+        //         }
+        //         hotArticle[k] = res[k]
+        //     }
+        //     this.setState({
+        //         hotArticle: hotArticle
+        //     })
+        //     var id = window.location.pathname.split("/")[2]
+        //     $.ajax({
+        //         url: fileIp.defaultIp + "/getArticle?_id=" + id
+        //     }).then(res => {
+        //         $.ajax({
+        //             url: fileIp.defaultIp + "/articleMd?name=" + res[0].MdUrl
+        //         }).then(res2 => {
+        //             this.setState({
+        //                 markdown: res2
+        //             })
+        //         })
+        //     })
 
-        })
+        // })
     }
     componentDidMount () {
         var thediv = (timespan) => {
@@ -120,16 +120,16 @@ export default class Catalog extends Component {
         }
     }
     getMD = () => {
-        var nav = []
-        for (var i = 0; i < $("[type=h1]").length; i++) {
-            var obj = {}
-            obj.title = $(".MDtitle")[i].innerHTML
-            obj.href = $(".MDlink")[i].href
-            nav.push(obj)
-        }
-        this.setState({
-            navData: nav
-        })
+        // var nav = []
+        // for (var i = 0; i < $("[type=h1]").length; i++) {
+        //     var obj = {}
+        //     obj.title = $(".MDtitle")[i].innerHTML
+        //     obj.href = $(".MDlink")[i].href
+        //     nav.push(obj)
+        // }
+        // this.setState({
+        //     navData: nav
+        // })
     }
     render () {
         const { hotArticle, navData } = this.state

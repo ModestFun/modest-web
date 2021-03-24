@@ -6,37 +6,33 @@ import {
   BrowserRouter as Router,
   Redirect
 } from 'react-router-dom'
-import Admin from './Admin'
 import App from './App'
 import { mainRoutes } from './routes'
 import * as serviceWorker from './serviceWorker';
-import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-import todoApp from './reducers/index'
-let store = createStore(todoApp);
 
 class Modest extends Component {
   state = {
     spinning: true
   }
-  componentDidMount() {
+  componentDidMount () {
     window.setTimeout(() => {
       this.setState({
         spinning: false
       })
     }, 600)
   }
-  render() {
+  render () {
     return (
       <div>
         <Router>
           <Suspense fallback={<div>Loading...</div>}>
             <Switch>
               {/* 所有Admin的页面都走App这个组件 */}
-              <Route
+              {/* <Route
                 path="/admin"
                 render={routeProps => <Admin {...routeProps}></Admin>}>
-              </Route><Route
+              </Route> */}
+              <Route
                 path="/blog"
                 render={routeProps => <App {...routeProps}></App>}>
               </Route>
@@ -45,9 +41,7 @@ class Modest extends Component {
                   return <Route key={route.path} {...route} />
                 })
               }
-              <Route exact key='/'>
-                <Redirect to="/tags/all"></Redirect>
-              </Route>
+              <Route exact key='/' ></Route>
               <Redirect to="/404"></Redirect>
             </Switch>
           </Suspense>
@@ -81,9 +75,7 @@ class Modest extends Component {
 }
 
 ReactDOM.render(
-  <Provider store={store}>
-    <Modest></Modest>
-  </Provider>,
+  <Modest></Modest>,
   document.getElementById('root')
 );
 

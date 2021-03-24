@@ -18,11 +18,11 @@ export const fileIp = {
 // }
 // 主要路由
 export const mainRoutes = [
-    // {
-    //     path: "/",
-    //     component: Home,
-    //     exact: true
-    // },
+    {
+        path: "/",
+        component: Home,
+        exact: true
+    },
     {
         path: "/404",
         component: NotFound,
