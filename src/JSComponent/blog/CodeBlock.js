@@ -4,9 +4,7 @@ import ReactHighLight from 'react-highlight'
 import 'highlight.js/styles/atelier-sulphurpool-light.css'
 
 class codeblock extends Component{
-    constructor(props){
-        super(props);
-    }
+
     render(){
         console.log(this.props.children)
         return(

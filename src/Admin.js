@@ -1,13 +1,7 @@
 import React from 'react';
-import {
-  Route,
-  Switch,
-  Redirect
-} from 'react-router-dom'
-import { adminRoutes } from "./routes"
+
 // import Frame from "./JSComponent/admin/frames/index"
-import { Helmet } from 'react-helmet';
-import { fileIp } from "./routes/index"
+
 function Admin() {
   return (
     <div></div>

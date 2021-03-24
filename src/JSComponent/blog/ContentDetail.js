@@ -1,6 +1,7 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react'
 import "./contentDetail.css"
-import { Button, PageHeader, Checkbox, message, Input } from 'antd';
+import { Button, PageHeader, message, Input } from 'antd';
 import MarkDown from './Markdown'
 import CommentDetail from "./CommentDetail"
 import $ from "jquery"
@@ -19,9 +20,9 @@ const success = () => {
 const speakError = () => {
     message.error('2分钟之内只能发送一次评论！');
 };
-const hideError = () => {
-    message.error('您还没有引用他人的言论！');
-};
+// const hideError = () => {
+//     message.error('您还没有引用他人的言论！');
+// };
 const titleError = () => {
     message.error('留言内容和您的名字不可以为空');
 };
@@ -77,14 +78,14 @@ export default class ContentDetail extends Component {
         $(".uEmail")[0].value = ""
         $(".uBlog")[0].value = ""
         var hide = document.getElementsByClassName("hide")[0]
-        if (hide != "") {
+        if (hide !== "") {
             this.clearHide()
         }
     }
     btnClick = () => {
         var hide = document.getElementsByClassName("hide")[0]
         var content = ""
-        if (hide.innerHTML != "") {
+        if (hide.innerHTML !== "") {
             var atsb = document.getElementsByClassName("atSB")
             atsb = atsb[atsb.length - 1]
             content = `<div class="atSB">` + atsb.innerHTML + `</div><br/>`
@@ -96,14 +97,14 @@ export default class ContentDetail extends Component {
         var topic_id = window.location.pathname.split("/")[2]
         var date = new Date().getFullYear() + "年" + (new Date().getMonth() + 1) + '月' + new Date().getDate() + '日 ' + new Date().getHours() + ':' + new Date().getMinutes()
         var formdata = new FormData()
-        if (uEmail.indexOf("@") == -1) {
+        if (uEmail.indexOf("@") === -1) {
             emailError()
-        } else if (uEmail.split("@")[1] != "qq.com") {
+        } else if (uEmail.split("@")[1] !== "qq.com") {
             emailWarning()
-        } else if (content == "" || uName == "") {
+        } else if (content === "" || uName === "") {
             titleError()
         } else {
-            if (uBlog == "") {
+            if (uBlog === "") {
                 uBlog = "null"
             }
             window.setTimeout(() => {
@@ -143,7 +144,7 @@ export default class ContentDetail extends Component {
     }
     clearHide = () => {
         var hide = document.getElementsByClassName("hide")[0]
-        if (hide.innerHTML == "") {
+        if (hide.innerHTML === "") {
             // hideError()
         } else {
             hide.innerHTML = ""
@@ -165,8 +166,8 @@ export default class ContentDetail extends Component {
         }, 500)
     }
     isQQEmail = (email) => {
-        if (email.indexOf("@") != -1) {
-            if (email.split("@")[1] != "qq.com") {
+        if (email.indexOf("@") !== -1) {
+            if (email.split("@")[1] !== "qq.com") {
                 emailWarning()
             }
         }

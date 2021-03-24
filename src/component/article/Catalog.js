@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import "../common/common.css"
 import { List } from 'antd'
-import $ from 'jquery'
-import { fileIp } from "../../routes/index"
 import { Link } from "react-router-dom"
 export default class Catalog extends Component {
     state = {
@@ -48,7 +46,7 @@ export default class Catalog extends Component {
         ],
         hotArticle: []
     }
-    componentDidMount() {
+    componentDidMount () {
         // this.setState({
         //     isHome: window.location.pathname === "/" || window.location.pathname.split("/")[1] === "tags"
         // })
@@ -59,7 +57,7 @@ export default class Catalog extends Component {
         this.setState({ data });
         this.catalogInit()
     }
-    catalogInit() {
+    catalogInit () {
         const travelTime = (timeStamp) => {
             var result = parseInt((Date.now() - timeStamp) / 3600000 / 24);
             var result2 = Math.floor((Date.now() - timeStamp) % (24 * 3600000) / 3600 / 1000);
@@ -87,7 +85,7 @@ export default class Catalog extends Component {
             }
         }
     }
-    componentWillUnmount() {
+    componentWillUnmount () {
         window.clearInterval(this.timeInterval);
     }
     tagClick = (k) => {
@@ -107,8 +105,8 @@ export default class Catalog extends Component {
             }
         }
     }
-    render() {
-        const { data, hotArticle, isHome } = this.state
+    render () {
+        const { data, hotArticle } = this.state
         return (
             <div id="stopHere" className="catalog">
                 <div className="catalogTop">
@@ -149,7 +147,7 @@ export default class Catalog extends Component {
                         ))
                     }
                 </div>
-                <div id="stopHere2" style={isHome ? { display: "none" } : { display: "block" }} className="toolLog">
+                {/* <div id="stopHere2" style={isHome ? { display: "none" } : { display: "block" }} className="toolLog">
 
                     <h2 style={{ textAlign: "center", color: "#ff6700", fontWeight: "600" }}>工具栏</h2>
                     <div className="toolItemA">
@@ -158,7 +156,7 @@ export default class Catalog extends Component {
                     <div className="toolItemA">
                         <a className="toolA" onClick={() => { this.scrollToAnchor('screens2') }}>去发表看法</a>
                     </div>
-                </div>
+                </div> */}
             </div >
         )
     }

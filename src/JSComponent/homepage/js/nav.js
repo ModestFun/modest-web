@@ -85,7 +85,7 @@ export default class Nav extends Component {
             placement: e.target.value,
         });
     };
-    componentDidMount() {
+    componentDidMount () {
         const pathname = window.location.pathname;
         const pages = this.state.pages
         pages.forEach(item => pathname === item.href ? item.isShow = true : null)
@@ -96,7 +96,7 @@ export default class Nav extends Component {
             pages
         })
     }
-    render() {
+    render () {
         const { pages } = this.state
         return (
             <div className="navm">
@@ -131,7 +131,7 @@ export default class Nav extends Component {
                     </Col>
                     <Col className="smLogo" style={{ boxSizing: "border-box", backgroundColor: " background-color: rgba(255, 255, 255,0.6);", height: "50px" }} xl={5} lg={5} md={5} xs={14} sm={14}>
                         <div onClick={() => { window.location.href = "/admin" }} className="navname">
-                            <img className="navlogo" src={logo} />
+                            <img className="navlogo" src={logo} alt="" />
                             <h3 className="navMF">ModestFun</h3>
                         </div>
                     </Col>

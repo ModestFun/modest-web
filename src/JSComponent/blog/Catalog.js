@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import React, { Component } from 'react'
 import $ from 'jquery'
 import { fileIp } from "../../routes/index"
@@ -9,7 +10,7 @@ export default class Catalog extends Component {
         navData: []
     }
 
-    componentWillMount() {
+    componentWillMount () {
         if (window.location.pathname == "/" || window.location.pathname.split("/")[1] == "tags") {
             this.setState({
                 ishome: true
@@ -21,7 +22,7 @@ export default class Catalog extends Component {
         }
         const hotArticle = Array(5)
         $.ajax({
-            url: fileIp.defaultIp +"/getArticleList"
+            url: fileIp.defaultIp + "/getArticleList"
         }).then(res => {
             for (var i = 0; i < res.length; i++) {
                 for (var j = i; j < res.length; j++) {
@@ -46,10 +47,10 @@ export default class Catalog extends Component {
             })
             var id = window.location.pathname.split("/")[2]
             $.ajax({
-                url: fileIp.defaultIp +"/getArticle?_id=" + id
+                url: fileIp.defaultIp + "/getArticle?_id=" + id
             }).then(res => {
                 $.ajax({
-                    url: fileIp.defaultIp +"/articleMd?name=" + res[0].MdUrl
+                    url: fileIp.defaultIp + "/articleMd?name=" + res[0].MdUrl
                 }).then(res2 => {
                     this.setState({
                         markdown: res2
@@ -59,7 +60,7 @@ export default class Catalog extends Component {
 
         })
     }
-    componentDidMount() {
+    componentDidMount () {
         var thediv = (timespan) => {
             var result = Math.floor((new Date() - new Date(timespan)) / 3600000 / 24);
             var result2 = Math.floor((new Date() - new Date(timespan)) / 1000 / 60 / 60 / 60);
@@ -119,9 +120,9 @@ export default class Catalog extends Component {
         }
     }
     getMD = () => {
-        var nav = new Array()
+        var nav = []
         for (var i = 0; i < $("[type=h1]").length; i++) {
-            var obj = new Object()
+            var obj = {}
             obj.title = $(".MDtitle")[i].innerHTML
             obj.href = $(".MDlink")[i].href
             nav.push(obj)
@@ -130,8 +131,8 @@ export default class Catalog extends Component {
             navData: nav
         })
     }
-    render() {
-        const { hotArticle, ishome, markdown, navData } = this.state
+    render () {
+        const { hotArticle, navData } = this.state
         return (
             <div id="stopHere" className="catalog">
                 <div className="catalogTop">
@@ -141,7 +142,7 @@ export default class Catalog extends Component {
                 <div className="markdownLog">
                     <ul className="innerbox">
                         {
-                            navData.map((v,k)=>(
+                            navData.map((v, k) => (
                                 <li>
                                     <a className="mdlink" href={v.href}>{v.title}</a>
                                 </li>
@@ -161,7 +162,7 @@ export default class Catalog extends Component {
                         ))
                     }
                 </div>
-                {
+                {/* {
                     ishome ? "" : <div id="stopHere2" className="toolLog">
 
                         <h2 style={{ textAlign: "center", color: "#ff6700", fontWeight: "600" }}>工具栏</h2>
@@ -172,7 +173,7 @@ export default class Catalog extends Component {
                             <a className="toolA" onClick={() => { this.scrollToAnchor('screens2') }}>去发表看法</a>
                         </div>
                     </div>
-                }
+                } */}
             </div >
         )
     }

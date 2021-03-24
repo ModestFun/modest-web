@@ -7,13 +7,13 @@ export default class CommentDetail extends Component {
         $.ajax({
             url: fileIp.defaultIp +"/getTheComment?_id=" + e
         }).then(res => {
-            if (res[0].content.substring(0, 18) == `<div class="atSB">`) {
+            if (res[0].content.substring(0, 18) === `<div class="atSB">`) {
                 res[0].content = res[0].content.split("<br/>")[1]
             }
             var div = document.createElement("div")
             div.className = "atSB"
             var h3 = document.createElement("h3")
-            if(res[0].uName == "ModestFun528528+++"){
+            if(res[0].uName === "ModestFun528528+++"){
                 res[0].uName = "博主"
             }
             h3.innerHTML = "引用 " + res[0].uName + " 的发言："
@@ -50,14 +50,15 @@ export default class CommentDetail extends Component {
             str = str.replace("\n", "<br>")
             str = str.replace("\r", "")
         }
-        if(v.uName == "ModestFun528528+++"){
+        if(v.uName === "ModestFun528528+++"){
             v.uName = "博主"
         }
         v.content = str
         return (
             <div style={{ position: "relative", paddingBottom: "5px", borderBottom: "1px solid rgb(208,208,208)" }}>
                 {
-                    v.uBlog == "null" ? ( v.uName == "博主" ? <h3 style={{ color:"#ff6700",fontWeight: "600" }}>{v.uName} 说:</h3> :<h3 style={{ fontWeight: "600" }}>{v.uName} 说:</h3>) : <h3 style={{ fontWeight: "600" }}> <a href={v.uBlog} target="_blank" >{v.uName}</a> 说:</h3>
+                    // eslint-disable-next-line react/jsx-no-target-blank
+                    v.uBlog === "null" ? ( v.uName === "博主" ? <h3 style={{ color:"#ff6700",fontWeight: "600" }}>{v.uName} 说:</h3> :<h3 style={{ fontWeight: "600" }}>{v.uName} 说:</h3>) : <h3 style={{ fontWeight: "600" }}> <a href={v.uBlog} target="_blank" >{v.uName}</a> 说:</h3>
                 }
                 <p dangerouslySetInnerHTML={{ __html: v.content }} style={{ padding: "0px 20px" }}></p>
                 <div style={{ width: "100%", height: "18px" }}>

@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import { Row, Col } from 'antd';
 import "antd/dist/antd.css";
 import "../common/common.css";
-import $ from "jquery"
 import { fileIp } from "../../routes/index"
 import LazyLoad from 'react-lazyload';
+import { Link } from 'react-router-dom';
+
 class Sectioon extends Component {
 
-    render() {
+    render () {
         var { v } = this.props
         var date = v.date.split(".")
         var imgUrl = fileIp.defaultIp + "/articleImg/?name=" + v.titleImg
@@ -77,13 +78,13 @@ class Sectioon extends Component {
 }
 
 export default class AppContent extends Component {
-    shouldComponentUpdate(nextProps, nextState) {
+    shouldComponentUpdate (nextProps, nextState) {
         return nextProps.articleList !== this.props.articleList;
     }
     // componentDidMount() {
     //     $(".waifu")[0].style.display = "none"
     // }
-    render() {
+    render () {
         const { articleList } = this.props
         return (
 
@@ -94,12 +95,10 @@ export default class AppContent extends Component {
                     ))
                 }
                 <div className="appfooter">
-                    已经到底啦！如果你有什么好的想法，欢迎<a onClick={(e) => {
-                        e.preventDefault()
-                        window.location.href = fileIp.onLineIp + "/interact"
-                    }}>留言</a>告诉博主！
-                </div>
+                    已经到底啦！如果你有什么好的想法，欢迎
+                    <Link to="/interact">留言</Link>告诉博主！
             </div>
+            </div >
 
         )
     }

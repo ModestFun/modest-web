@@ -1,8 +1,7 @@
 import React, { Suspense } from 'react';
 import {
   Route,
-  Switch,
-  Redirect
+  Switch
 } from 'react-router-dom'
 import { blogRoutes } from "./routes"
 import { Helmet } from 'react-helmet';
