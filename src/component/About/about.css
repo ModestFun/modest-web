@@ -57,7 +57,7 @@
 .skill {
   animation: zoomIn 1s both;
   width: 100%;
-  background: url("../common/img/bg.png");
+  background: url("../common/img/wg.jpg");
   background-repeat: repeat;
   margin-top: 15px;
 }
@@ -154,7 +154,7 @@
     animation: zoomIn 1s both;
     width: 90%;
     margin: 0px auto;
-    background: url("../common/img/bg.png");
+    background: url("../common/img/wg.jpg");
     background-repeat: repeat;
     margin-top: 15px;
   }

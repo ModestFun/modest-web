@@ -3,6 +3,7 @@ import Home from "../component/article/home";
 import About from '../component/About/About';
 import FriendLink from '../component/FriendLink/FriendLink';
 import Career from '../component/Career/Career';
+import Interact from '../component/Interact/Interact'
 //  IP 端口  -  测试
 // export const fileIp = {
 //     defaultIp: "http://49.233.56.6:8080",
@@ -45,11 +46,11 @@ export const mainRoutes = [
         component: Career,
         exact: true
     },
-    // {
-    //     path: "/interact",
-    //     component: Interact,
-    //     exact: true
-    // },
+    {
+        path: "/interact",
+        component: Interact,
+        exact: true
+    },
     {
         path: "/friendLink",
         component: FriendLink,

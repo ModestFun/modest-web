@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Helmet } from 'react-helmet';
-import NavM from "../homepage/js/nav";
+import NavM from "../../JSComponent/homepage/js/nav";
 import { Button, Menu, Dropdown, message } from 'antd';
 import "./interact.css"
 import $ from "jquery"
@@ -518,9 +518,6 @@ export default class Interact extends Component {
                     <title>留言 | ModestFun的个人博客</title>
                     <link rel="icon" href={fileIp.defaultIp + "/img/?name=logo"} />
                 </Helmet>
-                <NavM></NavM>
-
-                <div className="fixcontainer"></div>
                 <div className="container">
                     <a href="#" id='screensTop'>&nbsp;</a>
                     <div className="wordCard">
