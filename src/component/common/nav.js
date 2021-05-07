@@ -49,6 +49,11 @@ export default function Nav () {
             isShow: false,
             href: "/career"
         },
+        // {
+        //     name: "归档",
+        //     isShow: false,
+        //     href: "/about"
+        // },
         {
             name: "留言",
             isShow: false,
@@ -65,7 +70,6 @@ export default function Nav () {
             href: "/about"
         },
     ]);
-    const [currentRoute, setCurrentRoute] = useState('');
 
     // 根据路由初始化被选中的nav item
     useEffect(() => {
@@ -74,7 +78,9 @@ export default function Nav () {
     }, []);
 
     const handleNavClick = (e) => {
-        console.log(e.target);
+        if (e.target.className === 'a-link') {
+            selectedMenuItem(e.target.id)
+        }
     }
 
     const showDrawer = () => {
@@ -96,7 +102,7 @@ export default function Nav () {
             setMenuList(pages);
             return;
         }
-        pages.forEach(item => pathname === item.href ? item.isShow = true : null)
+        pages.forEach(item => pathname === item.href ? item.isShow = true : item.isShow = false);
         setMenuList(pages);
     }
 
@@ -143,12 +149,12 @@ export default function Nav () {
                         <Button style={{ height: "60px", backgroundColor: "rgba(255,255,255,0)", borderRadius: "none", border: "none", float: "right" }}><svg t="1585737503747" viewBox="0 0 1434 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4887" width="32" height="32"><path d="M788.111359 588.177954c-20.070139 15.3598-47.205786 29.900411-73.112649 25.39487-25.804465 3.276757-50.175348-12.28784-70.143088-25.39487l-620.740731-481.273744c-31.743587-24.575681-31.743587-64.203965 0-88.574848a99.019513 99.019513 0 0 1 114.686509 0l577.528492 457.926847L1295.496763 18.329362a99.019513 99.019513 0 0 1 114.686509 0c31.743587 24.370883 31.743587 64.101567 0 88.47245l-622.071913 481.273743z" p-id="4888" fill="#ff6700"></path><path d="M788.111359 997.772629c-20.070139 15.3598-47.205786 29.900411-73.112649 25.39487-25.804465 3.276757-50.175348-12.28784-70.143088-25.39487l-620.740731-481.273743c-31.743587-24.575681-31.743587-64.203965 0-88.574849a99.019513 99.019513 0 0 1 114.686509 0l577.528492 457.926847 579.166871-457.926847a99.019513 99.019513 0 0 1 114.686509 0c31.743587 24.370883 31.743587 64.101567 0 88.47245l-622.071913 481.273743z" p-id="4889" fill="#ff6700"></path></svg></Button>
                     </Dropdown>
                 </Col>
-                <Col style={{ boxSizing: "border-box", height: "60px" }} offset={4} xl={15} lg={15} md={15} xs={0} sm={0}>
+                <Col style={{ boxSizing: "border-box", height: "60px", display: "flex", justifyContent: "right" }} offset={4} xl={15} lg={15} md={15} xs={0} sm={0}>
                     <ul className="navList" onClick={(e) => handleNavClick(e)}>
                         {
                             menuList.map((v, k) => (
                                 <li className={v.isShow ? "navItem navItem_show" : "navItem"}>
-                                    <Link to={v.href}>{v.name}</Link>
+                                    <Link className='a-link' id={v.href} to={v.href}>{v.name}</Link>
                                     <span className={v.isShow ? "line line_show" : "line"}></span>
                                 </li>
                             ))
