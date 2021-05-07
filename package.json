@@ -5,9 +5,11 @@
   "dependencies": {
     "antd": "^3.26.14",
     "axios": "^0.21.1",
+    "customize-cra": "^1.0.0",
     "highlight.js": "^10.7.2",
     "jquery": "^3.6.0",
     "react": "^17.0.1",
+    "react-app-rewired": "^2.1.8",
     "react-dom": "^17.0.1",
     "react-helmet": "^5.2.1",
     "react-highlight": "^0.14.0",

@@ -10,7 +10,6 @@ import App from './App'
 import Nav from './component/common/nav';
 import { mainRoutes } from './routes'
 import * as serviceWorker from './serviceWorker';
-import style from './index.css'
 
 class Modest extends Component {
   state = {

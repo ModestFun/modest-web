@@ -1,6 +1,5 @@
-import React, { Component, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { List, Row, Col, Menu, Dropdown, Drawer, Button } from 'antd';
-import "antd/dist/antd.css";
 import "./common.css";
 import logo from './img/logo.png'
 import { Link } from "react-router-dom"
@@ -37,7 +36,6 @@ const menu = (
 
 export default function Nav () {
     const [visible, setVisible] = useState(false);
-    const [placement, setPlacement] = useState('');
     const [menuList, setMenuList] = useState([
         {
             name: "文章",
@@ -83,18 +81,6 @@ export default function Nav () {
         }
     }
 
-    const showDrawer = () => {
-        setVisible(true);
-    };
-
-    const onClose = () => {
-        setVisible(true);
-    };
-
-    const onChange = e => {
-        setPlacement(e.target.value);
-    };
-
     const selectedMenuItem = (pathname) => {
         const pages = JSON.parse(JSON.stringify(menuList));
         if (pathname.split('/')[1] === 'blog' || pathname.split('/')[1] === 'tags') {
@@ -106,21 +92,20 @@ export default function Nav () {
         setMenuList(pages);
     }
 
-
     return (
         <div className="nav">
             <Row className="container logoModest" style={{ backgroundColor: " background-color: rgba(255, 255, 255,0.6);" }}>
                 <Col xl={0} lg={0} md={0} xs={5} sm={5}>
                     <Button
                         style={{ height: "60px", backgroundColor: "rgba(255,255,255,0)", borderRadius: "none", border: "none" }}
-                        onClick={showDrawer}>
+                        onClick={() => setVisible(true)}>
                         <svg t="1585737403469" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1140" width="32" height="32"><path d="M145.3056 231.389867H907.946667c17.339733 0 31.573333-15.086933 31.573333-33.4848 0-18.5344-14.2336-33.621333-31.573333-33.621334H145.3056c-17.6128 0-31.709867 15.086933-31.709867 33.621334 0 18.397867 14.097067 33.4848 31.709867 33.4848zM907.946667 482.884267H145.3056c-17.6128 0-31.709867 14.984533-31.709867 33.518933 0 18.568533 14.097067 33.553067 31.709867 33.553067H907.946667c17.339733 0 31.573333-14.984533 31.573333-33.553067-0.034133-18.5344-14.267733-33.518933-31.573333-33.518933z m0 331.502933H145.3056c-17.6128 0-31.709867 15.018667-31.709867 33.655467 0 18.397867 14.097067 33.416533 31.709867 33.416533H907.946667c17.339733 0 31.573333-15.018667 31.573333-33.416533-0.034133-18.602667-14.267733-33.655467-31.573333-33.655467z" p-id="1141" fill="#ff6700"></path></svg>
                     </Button>
                     <Drawer
                         style={{ marginTop: "60px" }}
-                        placement={placement}
+                        placement={'left'}
                         closable={false}
-                        onClose={onClose}
+                        onClose={() => setVisible(false)}
                         visible={visible}
                     >
                         <List

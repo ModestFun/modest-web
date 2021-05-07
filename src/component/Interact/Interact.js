@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Helmet } from 'react-helmet';
-import NavM from "../../JSComponent/homepage/js/nav";
-import { Button, Menu, Dropdown, message } from 'antd';
+import { Button, message } from 'antd';
 import "./interact.css"
 import $ from "jquery"
 import { BackTop } from 'antd';

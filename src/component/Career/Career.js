@@ -85,7 +85,7 @@ export default class Career extends Component {
                         </h1>
                                 {
                                     list.map((v, k) => (
-                                        v.data == "" ? "" : <div className="timeLineYear" key={k}>
+                                        v.data === "" ? "" : <div className="timeLineYear" key={k}>
                                             <h2 className="itemYear">{v.year} 年</h2>
                                             <ul>
                                                 {

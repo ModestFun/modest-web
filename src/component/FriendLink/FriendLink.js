@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 import React, { Component } from 'react'
 import { Helmet } from 'react-helmet';
 import axios from 'axios'
@@ -31,7 +32,7 @@ export default class FriendLink extends Component {
         })
     }
     render () {
-        const { near, far, mine, big } = this.state
+        const { near, far, big } = this.state
         console.log(this.state)
         return (
             <div style={{ overflow: "hidden" }}>
@@ -58,7 +59,7 @@ export default class FriendLink extends Component {
                             <h4>名称：ModestFun的个人博客</h4>
                             <h4>网址：https://www.modestfun.com/</h4>
                             <h4>图标：https://www.modestfun.com:8080/img/?name=logo</h4>
-                            <h4>描述：一个四非大学的预备钱端攻城狮🦁</h4>
+                            <h4>描述：一个四非大学的预备钱端攻城狮</h4>
                             <h4>特别提醒： 申请提交后若无其它原因将在24小时内完成审核,如超过时间还未通过,请留言或私信给我.</h4>
                         </div>
                     </div>

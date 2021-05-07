@@ -5,7 +5,6 @@ import "antd/dist/antd.css";
 import "../common/common.css";
 import { Helmet } from 'react-helmet';
 import { BackTop } from 'antd';
-import Nav from "../common/nav";
 import AppContent from "./AppContent";
 import Catalog from "./Catalog"
 import { fileIp } from "../../routes/index"
