@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Helmet } from 'react-helmet';
-import NavM from "../homepage/js/nav";
-import $ from "jquery"
+import axios from 'axios'
 import "./FriendLink.css"
 import { fileIp } from "../../routes/index"
 export default class FriendLink extends Component {
@@ -10,19 +9,17 @@ export default class FriendLink extends Component {
         far: [],
         big: []
     }
-    componentDidMount() {
-        $.ajax({
-            url: fileIp.defaultIp + "/getFriend"
-        }).then(res => {
+    componentDidMount () {
+        axios.get(fileIp.defaultIp + "/getFriend").then(res => {
             var near = []
             var far = []
             var big = []
-            res.forEach(item => {
-                if (item.friendType == '身边的朋友') {
+            res.data.forEach(item => {
+                if (item.friendType === '身边的朋友') {
                     near.push(item)
-                } else if (item.friendType == '远方的伙伴') {
+                } else if (item.friendType === '远方的伙伴') {
                     far.push(item)
-                } else if (item.friendType == '大佬的博客') {
+                } else if (item.friendType === '大佬的博客') {
                     big.push(item)
                 }
             })
@@ -33,7 +30,7 @@ export default class FriendLink extends Component {
             })
         })
     }
-    render() {
+    render () {
         const { near, far, mine, big } = this.state
         console.log(this.state)
         return (
@@ -43,8 +40,6 @@ export default class FriendLink extends Component {
                     <title>友链 | ModestFun的个人博客</title>
                     <link rel="icon" href={fileIp.defaultIp + "/img/?name=logo"} />
                 </Helmet>
-                <NavM></NavM>
-                <div className="fixcontainer"></div>
                 <div className="container">
                     <div className="ruleCard">
                         <h3 className="ruleTitle">链接申请说明</h3>
