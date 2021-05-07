@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-target-blank */
 import React, { Component } from 'react'
-import NavM from "../homepage/js/nav";
+import NavM from "../../JSComponent/homepage/js/nav";
 import { Helmet } from 'react-helmet';
 import { Tooltip, Progress } from 'antd';
 import "./about.css"
@@ -99,14 +99,14 @@ export default class About extends Component {
             },
         ]
     }
-    componentDidMount() {
+    componentDidMount () {
         const arr = this.state.skill
         arr.sort((a, b) => b.progress - a.progress)
         this.setState({
             skill: arr
         })
     }
-    render() {
+    render () {
         const { skill } = this.state
         return (
             <div style={{ overflow: "hidden" }}>
@@ -115,8 +115,6 @@ export default class About extends Component {
                     <title>关于 | ModestFun的个人博客</title>
                     <link rel="icon" href={fileIp.defaultIp + "/img/?name=logo"} />
                 </Helmet>
-                <div className="fixcontainer"></div>
-                <NavM></NavM>
                 <div style={{ position: "relative", backgroundColor: "rgba(255,255,255,0)" }} className="container">
 
                     <div className="aboutMe">

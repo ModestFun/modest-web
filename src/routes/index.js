@@ -1,6 +1,6 @@
 import NotFound from "./notFound.js"
 import Home from "../component/article/home"
-import About from '../JSComponent/About/About';
+import About from '../component/About/About';
 //  IP 端口  -  测试
 // export const fileIp = {
 //     defaultIp: "http://49.233.56.6:8080",

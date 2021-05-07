@@ -48,8 +48,6 @@ export default class Home extends Component {
                     <title>首页 | ModestFun的个人博客</title>
                     <link rel="icon" href={fileIp.defaultIp + "/img/?name=logo"} />
                 </Helmet>
-                <div className="fixcontainer"></div>
-                <Nav></Nav>
                 <a href="#" id='screens4'>&nbsp;</a>
                 <div className="container" >
                     <Row className="Row" style={{ backgroundColor: "rgba(255,255,255,0)", minHeight: "1000px", marginTop: "40px" }}>
