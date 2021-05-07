@@ -1,6 +1,7 @@
 import NotFound from "./notFound.js"
 import Home from "../component/article/home"
 import About from '../component/About/About';
+import Career from '../component/Career/Career'
 //  IP 端口  -  测试
 // export const fileIp = {
 //     defaultIp: "http://49.233.56.6:8080",
@@ -38,11 +39,11 @@ export const mainRoutes = [
         component: Home,
         exact: true
     },
-    // {
-    //     path: "/career",
-    //     component: Career,
-    //     exact: true
-    // },
+    {
+        path: "/career",
+        component: Career,
+        exact: true
+    },
     // {
     //     path: "/interact",
     //     component: Interact,

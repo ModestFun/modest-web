@@ -1,18 +1,15 @@
 import React, { Component } from 'react'
-// import NavM from "../homepage/js/nav";
 import "./career.css"
 import { Helmet } from 'react-helmet';
 import { Row, Col } from 'antd';
-import $ from "jquery"
+import axios from 'axios'
 import { fileIp } from "../../routes/index"
 export default class Career extends Component {
     state = {
         list: []
     }
-    componentWillMount() {
-        $.ajax({
-            url: fileIp.defaultIp + "/getCareer"
-        }).then(res => {
+    componentWillMount () {
+        axios.get(fileIp.defaultIp + "/getCareer").then(res => {
             var list = []
             var a2017 = {
                 year: "2017",
@@ -36,7 +33,7 @@ export default class Career extends Component {
             }
             // 未来的我如果有幸看到这里，先给自己十个嘴巴子，谢谢
             // 如果还是不会，请再打自己20个嘴巴，谢谢
-            res.forEach(item => {
+            res.data.forEach(item => {
                 switch (item.year) {
                     case "2017": a2017.data.push(item.data);
                         break;
@@ -67,7 +64,7 @@ export default class Career extends Component {
             })
         })
     }
-    render() {
+    render () {
         const { list } = this.state
         return (
             <div style={{ overflow: "hidden" }}>
@@ -76,8 +73,6 @@ export default class Career extends Component {
                     <title>日记 | ModestFun的个人博客</title>
                     <link rel="icon" href={fileIp.defaultIp + "/img/?name=logo"} />
                 </Helmet>
-                <div className="fixcontainer"></div>
-                <NavM></NavM>
 
                 <div style={{ position: "relative" }} className="container ">
                     <Row>

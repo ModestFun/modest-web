@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-no-target-blank */
 import React, { Component } from 'react'
-import NavM from "../../JSComponent/homepage/js/nav";
 import { Helmet } from 'react-helmet';
 import { Tooltip, Progress } from 'antd';
 import "./about.css"
